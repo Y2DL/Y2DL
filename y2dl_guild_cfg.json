@@ -1,0 +1,153 @@
+{
+    "guild_id": "",
+    "youtube": {
+        "dynamic_channel_message_info": {
+            "enabled": false,
+            "channels": [
+                {
+                    "youtube_channel_id": "",
+                    "output_channel_id": "",
+                    "message": {
+                        "content": "",
+                        "embeds": [
+                            {
+                                "title": "{channelName}",
+                                "description": "{channelDescription}",
+                                "fields": [
+                                    {
+                                        "name": "Views",
+                                        "value": "{channelTotalViews}",
+                                        "inline": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "dynamic_channel_vcname_info": {
+            "enabled": false,
+            "channels": [
+                {
+                    "youtube_channel_id": "",
+                    "voice_channel_id": "",
+                    "format": ""
+                }
+            ]
+        },
+        "channel_releases": {
+            "enabled": false,
+            "channels": [
+                {
+                    "youtube_channel_id": "",
+                    "output_channel_id": "",
+                    "message": {
+                        "content": "A new video by {channelName} just dropped!",
+                        "embeds": [
+                            {
+                                "title": "{videoName}",
+                                "description": "{videoDescription}",
+                                "thumbnail": {
+                                    "url": "{videoThumbnailUrl}"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "milestone_notifications": {
+            "enabled": false,
+            "channels": [
+                {
+                    "youtube_channel_id": "",
+                    "output_channel_id": "",
+                    "messages": [
+                        {
+                            "milestone_type": "SUBSCRIBERS",
+                            "milestone_threashold": 10000,
+                            "content": "{channelName} just reached the 10k subscriber milestone!"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "twitch": {
+        "dynamic_channel_message_info": {
+            "enabled": false,
+            "channels": [
+                {
+                    "twitch_login_name": "",
+                    "output_channel_id": "",
+                    "message": {
+                        "content": "",
+                        "embeds": [
+                            {
+                                "title": "{channelName}",
+                                "description": "{channelDescription}",
+                                "fields": [
+                                    {
+                                        "name": "Views",
+                                        "value": "{channelTotalViews}",
+                                        "inline": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "dynamic_channel_vcname_info": {
+            "enabled": false,
+            "channels": [
+                {
+                    "twitch_login_name": "",
+                    "voice_channel_id": "",
+                    "format": ""
+                }
+            ]
+        },
+        "event_notifications": {
+            "enabled": false,
+            "channels": [
+                {
+                    "twitch_login_name": "",
+                    "output_channel_id": "",
+                    "messages": [
+                        {
+                            "type": "stream.online",
+                            "content": "{channelName} is streaming!",
+                            "embeds": [
+                                {
+                                    "title": "{streamName}",
+                                    "description": "Playing {streamCategory}",
+                                    "thumbnail": {
+                                        "url": "{streamThumbnailUrl}"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "milestone_notifications": {
+            "enabled": false,
+            "channels": [
+                {
+                    "twitch_login_name": "",
+                    "output_channel_id": "",
+                    "messages": [
+                        {
+                            "milestone_type": "TWITCH_LINKED",
+                            "content": "{channelName} just reached the {goalName} goal!"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

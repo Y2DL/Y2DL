@@ -1,0 +1,1700 @@
+{
+  "kind": "youtube#searchListResponse",
+  "etag": "m2eXkPfDalASJGXgG-6GMrP22Hw",
+  "nextPageToken": "CDIQAA",
+  "regionCode": "PH",
+  "pageInfo": {
+    "totalResults": 5630,
+    "resultsPerPage": 50
+  },
+  "items": [
+    {
+      "kind": "youtube#searchResult",
+      "etag": "hITlklbXH4XmCeM48rBgruLMULU",
+      "id": {
+        "kind": "youtube#channel",
+        "channelId": "UCYK4-U9QyCkuA_CBozXXTRA"
+      },
+      "snippet": {
+        "publishedAt": "2021-02-19T00:18:08Z",
+        "channelId": "UCYK4-U9QyCkuA_CBozXXTRA",
+        "title": "Netherverse",
+        "description": "Hey Guys! it's me, Netherverse here! Get Ready for some great Minecraft content! I am a creator that makes videos for other small ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/xnvEQLUMgrTwMi6V3D8GISyRh4Uv5yfw8k-hdaGmf-VHyDpE8CGzx5jN3zbUgzkcCdd94mHTK6I=s88-c-k-c0xffffffff-no-rj-mo"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/xnvEQLUMgrTwMi6V3D8GISyRh4Uv5yfw8k-hdaGmf-VHyDpE8CGzx5jN3zbUgzkcCdd94mHTK6I=s240-c-k-c0xffffffff-no-rj-mo"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/xnvEQLUMgrTwMi6V3D8GISyRh4Uv5yfw8k-hdaGmf-VHyDpE8CGzx5jN3zbUgzkcCdd94mHTK6I=s800-c-k-c0xffffffff-no-rj-mo"
+          }
+        },
+        "channelTitle": "Netherverse",
+        "liveBroadcastContent": "live",
+        "publishTime": "2021-02-19T00:18:08Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "Hb21dXeeOwlVwjn10QHB-kmgmpc",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "PLk82AnCYxUsjXAVbJ0wNE4UrzDEPXh3zi"
+      },
+      "snippet": {
+        "publishedAt": "2024-03-15T00:35:14Z",
+        "channelId": "UCEjxeDgkB8mcu-hommZe_NA",
+        "title": "Xenomorph - Netherverse [2024]",
+        "description": "Subscribe: https://youtube.com/SuntripRecords?sub_confirmation=1 https://suntriprecords.bandcamp.com/album/netherverse ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/CHMS6t8x0FI/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/CHMS6t8x0FI/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/CHMS6t8x0FI/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Suntrip Records & Classic Goa Trax",
+        "liveBroadcastContent": "none",
+        "publishTime": "2024-03-15T00:35:14Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "MY6rh472Zx0MTccz3YVFK9F0X8s",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "ZS5qqqeEQSM"
+      },
+      "snippet": {
+        "publishedAt": "2023-03-09T16:48:02Z",
+        "channelId": "UCieX4b8qxjpZudgu1EdHpQQ",
+        "title": "NETHERVERSE - Official Launch Trailer",
+        "description": "NETHERVERSE Official Launch Trailer In this dystopian universe, Humans encounters Nethers for the very first time. As their ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/ZS5qqqeEQSM/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/ZS5qqqeEQSM/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/ZS5qqqeEQSM/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "PLAYMIND",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-03-09T16:48:02Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "XV-yAewtUASm3-4g9jIRlN7Dc1M",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "Uj9hMkcS0fI"
+      },
+      "snippet": {
+        "publishedAt": "2023-10-15T21:00:09Z",
+        "channelId": "UCUsgpW5r0I6OBDkWLwoJTkw",
+        "title": "O.Z x Kruky - The Netherverse (Official Video)",
+        "description": "O.Z x Kruky - The Netherverse (RAVE014) Stream/Download: https://cygnusmusic.link/ax8paxj Mainrave Recordings ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Uj9hMkcS0fI/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Uj9hMkcS0fI/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Uj9hMkcS0fI/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Mainrave Recordings",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-10-15T21:00:09Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "xJbTVXf66yPCTXzlx03oQXIntbk",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "OLAK5uy_lpsIOvFrI2K2HkZg_AQojCmNQYmP2l3EQ"
+      },
+      "snippet": {
+        "publishedAt": "2024-03-11T11:24:33Z",
+        "channelId": "UC",
+        "title": "Netherverse",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/u8v4O_KefzE/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/u8v4O_KefzE/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/u8v4O_KefzE/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "",
+        "liveBroadcastContent": "none",
+        "publishTime": "2024-03-11T11:24:33Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "XJ2kJy4dtdqF-DpmkdeTa6Sf0y4",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "PLjOHwX4Jwb1X77AoToEyL72a9NijwLR2e"
+      },
+      "snippet": {
+        "publishedAt": "2020-08-18T18:52:41Z",
+        "channelId": "UCTgDUrxaJ-n31VlEMuluPJw",
+        "title": "Story Videos [NetherVerse]",
+        "description": "All of the story related videos in The Nether Verse. In chronological order.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Bq1ta2GN5ZE/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Bq1ta2GN5ZE/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Bq1ta2GN5ZE/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "NethermanStudios",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-08-18T18:52:41Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "vfcobRzx0WGSBaFMn28FJVe-P2A",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "xn6b4iFcCdY"
+      },
+      "snippet": {
+        "publishedAt": "2024-03-14T10:01:48Z",
+        "channelId": "UC4qO09SerIP1kVgu98YM5rQ",
+        "title": "Netherverse",
+        "description": "Provided to YouTube by Label Worx Limited Netherverse · Xenomorph Netherverse ℗ Suntrip Records Released on: 2024-03-15 ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/xn6b4iFcCdY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/xn6b4iFcCdY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/xn6b4iFcCdY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Xenomorph - Topic",
+        "liveBroadcastContent": "none",
+        "publishTime": "2024-03-14T10:01:48Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "hzioQaLq5_jSTMrLc73FSNOPRyw",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "OLAK5uy_kmjVfNj7s_U80ugV1kFdTmFsfZTr3H8V4"
+      },
+      "snippet": {
+        "publishedAt": "2023-10-23T08:43:45Z",
+        "channelId": "UC",
+        "title": "The Netherverse",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/tfdaVhn3mv4/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/tfdaVhn3mv4/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/tfdaVhn3mv4/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-10-23T08:43:45Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "tk2NLYu3-5ujGOlel--EX4KtTMw",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "Kx0fJIm6Q8s"
+      },
+      "snippet": {
+        "publishedAt": "2013-12-15T08:11:22Z",
+        "channelId": "UCn3Kw4tcg8ErxR0iirP9rig",
+        "title": "Skill Point #26: Master of the Netherverse - Delta",
+        "description": "Complete Netherverse Puzzle 4 only changing gravity 25 times.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Kx0fJIm6Q8s/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Kx0fJIm6Q8s/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Kx0fJIm6Q8s/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Blaiyan",
+        "liveBroadcastContent": "none",
+        "publishTime": "2013-12-15T08:11:22Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "qrWUaXy6JiUtf5sPIBs7nDo_6iM",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "nMeEHth0mdo"
+      },
+      "snippet": {
+        "publishedAt": "2013-12-15T19:34:37Z",
+        "channelId": "UCn3Kw4tcg8ErxR0iirP9rig",
+        "title": "Skill Point #24: Master of the Netherverse - Beta",
+        "description": "Complete Netherverse puzzle 2 only changing gravity 10 times.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/nMeEHth0mdo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/nMeEHth0mdo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/nMeEHth0mdo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Blaiyan",
+        "liveBroadcastContent": "none",
+        "publishTime": "2013-12-15T19:34:37Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "OcDDa2E0eZ-bgAUfQ_2GGgEusKY",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "PLGOlVoeteOif9lLw7go3P1IJOzJ9auisM"
+      },
+      "snippet": {
+        "publishedAt": "2023-05-12T15:21:13Z",
+        "channelId": "UCwNVe-bwkoN278SxXG83Kbg",
+        "title": "Video Game Idea Series: Project X Zone - The Netherverse Trilogy",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Vg6wXggdXEk/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Vg6wXggdXEk/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Vg6wXggdXEk/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "SuperSonic93",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-05-12T15:21:13Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "hl5Fx0fl8nGVihjlZKkW5_bsXYI",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "tfdaVhn3mv4"
+      },
+      "snippet": {
+        "publishedAt": "2023-10-23T08:43:43Z",
+        "channelId": "UCYaSp9RavfYKsag61y5xXkQ",
+        "title": "The Netherverse (Extended Mix)",
+        "description": "Provided to YouTube by Cygnus Music Ltd The Netherverse (Extended Mix) · O.Z · Kruky The Netherverse ℗ 2023 Mainrave ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/tfdaVhn3mv4/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/tfdaVhn3mv4/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/tfdaVhn3mv4/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "O.Z - Topic",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-10-23T08:43:43Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "0NfRWODX4ed5jjTqeUYzKpIqsW0",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "uwUNwYeSN4A"
+      },
+      "snippet": {
+        "publishedAt": "2023-01-24T20:25:04Z",
+        "channelId": "UCieX4b8qxjpZudgu1EdHpQQ",
+        "title": "Netherverse - Steam Early Access Trailer",
+        "description": "Netherverse is a Free-to-play, Third-person, Multiplayer, Team-based deathmatch game set in a dystopian world. In this universe ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/uwUNwYeSN4A/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/uwUNwYeSN4A/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/uwUNwYeSN4A/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "PLAYMIND",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-01-24T20:25:04Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "9s6AddRjHmKKOL0Rk2S4tx7EEVg",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "X6GuOIWQ_4Q"
+      },
+      "snippet": {
+        "publishedAt": "2013-12-16T17:11:48Z",
+        "channelId": "UCn3Kw4tcg8ErxR0iirP9rig",
+        "title": "Skill Point #23: Master of the Netherverse - Alpha",
+        "description": "Complete Netherverse puzzle 1 only changing gravity 5 times.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/X6GuOIWQ_4Q/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/X6GuOIWQ_4Q/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/X6GuOIWQ_4Q/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Blaiyan",
+        "liveBroadcastContent": "none",
+        "publishTime": "2013-12-16T17:11:48Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "PVfiwREg_YneYjA9hX6Ims9P7Zw",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "l2z5jpCQ9ws"
+      },
+      "snippet": {
+        "publishedAt": "2014-01-03T03:42:08Z",
+        "channelId": "UCaEsTGQlQaDlTIg2ERQjYJQ",
+        "title": "Ratchet &amp; Clank: Into the Nexus - Netherverse restart cheat",
+        "description": "Cheat part starts at 3:00 This is the easy way to get any skill points for the Netherverse challenges except for Netherverse #5.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/l2z5jpCQ9ws/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/l2z5jpCQ9ws/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/l2z5jpCQ9ws/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Sakusphere",
+        "liveBroadcastContent": "none",
+        "publishTime": "2014-01-03T03:42:08Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "2sJOAs5HYOIGOl1DG953VOPkM7o",
+      "id": {
+        "kind": "youtube#channel",
+        "channelId": "UCwWX3SqEhOpah50kt-J29BA"
+      },
+      "snippet": {
+        "publishedAt": "2022-04-12T23:55:39Z",
+        "channelId": "UCwWX3SqEhOpah50kt-J29BA",
+        "title": "NetherverseOST",
+        "description": "help sorta wont let me out of his basement This is my music channel. I make two things: Custom Minecraft music discs and Epic ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/UF9LGiVCpn1eEV7GizWLINIgPJHuC_SeTzMQp7Z-d9HQLz-DlvPI1Neb5uAoMgUNHKXojtTM1QA=s88-c-k-c0xffffffff-no-rj-mo"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/UF9LGiVCpn1eEV7GizWLINIgPJHuC_SeTzMQp7Z-d9HQLz-DlvPI1Neb5uAoMgUNHKXojtTM1QA=s240-c-k-c0xffffffff-no-rj-mo"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/UF9LGiVCpn1eEV7GizWLINIgPJHuC_SeTzMQp7Z-d9HQLz-DlvPI1Neb5uAoMgUNHKXojtTM1QA=s800-c-k-c0xffffffff-no-rj-mo"
+          }
+        },
+        "channelTitle": "NetherverseOST",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-04-12T23:55:39Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "-k_f5MwLpyKHiB-b7e9RrfqtqOM",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "7SmcpTW3A8E"
+      },
+      "snippet": {
+        "publishedAt": "2020-07-27T09:36:58Z",
+        "channelId": "UCcOQWc5D81M7Xb5Dcr0d0Ew",
+        "title": "Netherverse 5 in 0:44",
+        "description": "real time attack :(",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/7SmcpTW3A8E/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/7SmcpTW3A8E/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/7SmcpTW3A8E/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "suibom",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-07-27T09:36:58Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "L5PIg_rWyhbYLzS-wQ8RhYSW9bo",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "UE_Mc-7ihD4"
+      },
+      "snippet": {
+        "publishedAt": "2013-12-15T17:35:11Z",
+        "channelId": "UCn3Kw4tcg8ErxR0iirP9rig",
+        "title": "Skill Point #25: Master of the Netherverse - Gamma",
+        "description": "Complete Netherverse puzzle 3 only changing gravity 6 times.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/UE_Mc-7ihD4/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/UE_Mc-7ihD4/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/UE_Mc-7ihD4/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Blaiyan",
+        "liveBroadcastContent": "none",
+        "publishTime": "2013-12-15T17:35:11Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "sTaHClfiL78jARzGBibfp5LDVjE",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "CuIkzNugVtA"
+      },
+      "snippet": {
+        "publishedAt": "2020-04-26T18:00:04Z",
+        "channelId": "UCDEbF5KTYcaA-kRl-VykuvA",
+        "title": "Enter the Netherverse  | Minecraft Gameplay Video | Hardcore Survival Pt.4",
+        "description": "Watch as I explore the Nether, and find a Nether fortress in Minecraft! Hey guys thanks for watching my video! I stream games on ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/CuIkzNugVtA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/CuIkzNugVtA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/CuIkzNugVtA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "AlexFalse",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-04-26T18:00:04Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "HBVGMUbOS_ua_bygaMT0P9T8FUI",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "jAQXnrBGa1Q"
+      },
+      "snippet": {
+        "publishedAt": "2024-03-15T11:00:43Z",
+        "channelId": "UCEjxeDgkB8mcu-hommZe_NA",
+        "title": "Xenomorph - Subdimensional Anomaly",
+        "description": "Subscribe: https://youtube.com/SuntripRecords?sub_confirmation=1 https://suntriprecords.bandcamp.com/album/netherverse ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/jAQXnrBGa1Q/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/jAQXnrBGa1Q/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/jAQXnrBGa1Q/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Suntrip Records & Classic Goa Trax",
+        "liveBroadcastContent": "none",
+        "publishTime": "2024-03-15T11:00:43Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "aA79T6-SNR6KpUSr_0UGXsQqnXE",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "PLjOHwX4Jwb1XH6FPmgrUrH-oB270JOok8"
+      },
+      "snippet": {
+        "publishedAt": "2020-08-17T16:08:52Z",
+        "channelId": "UCTgDUrxaJ-n31VlEMuluPJw",
+        "title": "The NetherVerse (All Videos)",
+        "description": "What started off as skits and reviews, becomes a really interconnected and story driven series. This playlist is in chronological ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/m8ysRJfr3B0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/m8ysRJfr3B0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/m8ysRJfr3B0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "NethermanStudios",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-08-17T16:08:52Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "-A6P8Ov_r8cxaJ8Qd4yl2mzDGPk",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "bLLV90-J8T0"
+      },
+      "snippet": {
+        "publishedAt": "2024-03-15T11:00:36Z",
+        "channelId": "UCEjxeDgkB8mcu-hommZe_NA",
+        "title": "Xenomorph - Netherverse",
+        "description": "Subscribe: https://youtube.com/SuntripRecords?sub_confirmation=1 https://suntriprecords.bandcamp.com/album/netherverse ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/bLLV90-J8T0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/bLLV90-J8T0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/bLLV90-J8T0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Suntrip Records & Classic Goa Trax",
+        "liveBroadcastContent": "none",
+        "publishTime": "2024-03-15T11:00:36Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "NxA83gdcbXqlJAZsQS-5htD5hxY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "wE0sFYdqcmE"
+      },
+      "snippet": {
+        "publishedAt": "2023-05-17T05:01:15Z",
+        "channelId": "UCFZJPeDIGvyX2O2wM6ZxeRQ",
+        "title": "Minecraft But you Subscribe to Netherverse! #sub2netherverse",
+        "description": "go check him out- @NetherverseYT join his discord- https://discord.gg/fHpRU5FHv3.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/wE0sFYdqcmE/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/wE0sFYdqcmE/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/wE0sFYdqcmE/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "AlexDahMan",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-05-17T05:01:15Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "V8bzkyzHkLff31JQnoEvN_18ESI",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "eja68tP9UlE"
+      },
+      "snippet": {
+        "publishedAt": "2023-03-10T11:06:29Z",
+        "channelId": "UC3OAgUoy1JEp1FbYQK8bEEA",
+        "title": "Netherverse | Only Tutorial | No Players | GamePlay PC",
+        "description": "As Humanity's dimensional world collides with a parallel dimension, mysterious living organisms, called the Nethers, begin to ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/eja68tP9UlE/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/eja68tP9UlE/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/eja68tP9UlE/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "MAZAVS - Games Channel",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-03-10T11:06:29Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "1FeTz3oLbtroo6mMJsUXdOZkZEQ",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "lacW8SyiWJ8"
+      },
+      "snippet": {
+        "publishedAt": "2023-07-06T16:00:08Z",
+        "channelId": "UCYK4-U9QyCkuA_CBozXXTRA",
+        "title": "Is Minecraft an Unkillable Game?",
+        "description": "Today we talk about the rise, fall, resurgence, and current era of the game Minecraft, as well as the future I predict could happen if ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/lacW8SyiWJ8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/lacW8SyiWJ8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/lacW8SyiWJ8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Netherverse",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-07-06T16:00:08Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "O-ZBR73nQ3ON_MUL8JYbPDc8Ljs",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "pmDzV6R3Czw"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-13T13:59:56Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e16 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/pmDzV6R3Czw/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/pmDzV6R3Czw/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/pmDzV6R3Czw/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-13T13:59:56Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "rM2MrNwQwpUeriGNgLURfYteF4c",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "JAQYqQ1dndA"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-08T16:01:23Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e9 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/JAQYqQ1dndA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/JAQYqQ1dndA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/JAQYqQ1dndA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-08T16:01:23Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "IHbT5L9e0ASfF_igL57_ouy8XEs",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "L6DcZ4ajbJY"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-18T07:05:02Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e19 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/L6DcZ4ajbJY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/L6DcZ4ajbJY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/L6DcZ4ajbJY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-18T07:05:02Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "9KyVLLJ8tqzjaa1kEgudIvdE2hI",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "S68GvhCalbo"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-05T18:29:09Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e7 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/S68GvhCalbo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/S68GvhCalbo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/S68GvhCalbo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-05T18:29:09Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "JAqH9J6ZLzsZYlNsZK6ngt3adb8",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "OLAK5uy_n0e0fyxvWTfMmmIT75Awwzu7Yqwo-3mqc"
+      },
+      "snippet": {
+        "publishedAt": "2023-05-11T02:00:06Z",
+        "channelId": "UC",
+        "title": "Top Songs - Netherverse",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/cLwJstQTBbo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/cLwJstQTBbo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/cLwJstQTBbo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-05-11T02:00:06Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "pvXjkzvDhUrEJvm5chbZLZj30uQ",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "DPyx3IShNqY"
+      },
+      "snippet": {
+        "publishedAt": "2012-09-01T02:46:59Z",
+        "channelId": "UCM9g9kjPJr26a2aTMT5pqcw",
+        "title": "Mavis Plays Minecraft- Episode 21 &quot;Netherverse&quot;",
+        "description": "My first attempt at a Let's Play! Wish me luck! I finally make it to the Nether. Music by: Mavis Twitter: https://twitter.com/mavis930.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/DPyx3IShNqY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/DPyx3IShNqY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/DPyx3IShNqY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Mavis Plays",
+        "liveBroadcastContent": "none",
+        "publishTime": "2012-09-01T02:46:59Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "bOZJozVh1ava-YcoS2x-57HMgQg",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "VtFaVKK4o6o"
+      },
+      "snippet": {
+        "publishedAt": "2023-01-06T22:00:11Z",
+        "channelId": "UCoiWxDVr6hL5qSvjdzPNWOA",
+        "title": "minecraft ep6 (into the netherverse)",
+        "description": "f  u  nether.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/VtFaVKK4o6o/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/VtFaVKK4o6o/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/VtFaVKK4o6o/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Zho",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-01-06T22:00:11Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "1dAT1PI0z1i0XjiAvp3rciPMVb0",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "ya636vvoCBY"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-07T01:55:13Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e8 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/ya636vvoCBY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/ya636vvoCBY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/ya636vvoCBY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-07T01:55:13Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "0gMxPJR8AS5JT3V1otPyCEkMkXw",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "Qy6Z69X7PsA"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-02T00:27:17Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e2 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Qy6Z69X7PsA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Qy6Z69X7PsA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Qy6Z69X7PsA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-02T00:27:17Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "FF2bASb5XtO02id064gUQ_obESI",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "JtepZopAK5M"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-19T11:30:02Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e20 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/JtepZopAK5M/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/JtepZopAK5M/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/JtepZopAK5M/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-19T11:30:02Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "BdKEr0Ao80PhdE2sbpeAgye1mgY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "80ODzMGzbWY"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-20T03:43:10Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e21 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/80ODzMGzbWY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/80ODzMGzbWY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/80ODzMGzbWY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-20T03:43:10Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "ngU8MpMLFl1yyzWvnIF170fmpZ8",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "IjN6GqJAWVc"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-04T21:15:20Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e6 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/IjN6GqJAWVc/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/IjN6GqJAWVc/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/IjN6GqJAWVc/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-04T21:15:20Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "iIJ5nPX9rKnDOmq5ZlA8itjN0z0",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "5S-yc10S388"
+      },
+      "snippet": {
+        "publishedAt": "2018-02-02T20:44:52Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e24 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/5S-yc10S388/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/5S-yc10S388/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/5S-yc10S388/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-02-02T20:44:52Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "1mYOxovZMm9sT4nFNOG3p0Dyvqc",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "f2BMb3UyWCk"
+      },
+      "snippet": {
+        "publishedAt": "2018-06-12T22:22:36Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e27 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/f2BMb3UyWCk/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/f2BMb3UyWCk/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/f2BMb3UyWCk/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-06-12T22:22:36Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "8DXFlQifCaSeX_TyXJcCbkAQAmA",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "pP_wraLW6f8"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-11T11:30:41Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e14 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/pP_wraLW6f8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/pP_wraLW6f8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/pP_wraLW6f8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-11T11:30:41Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "JSksVTmoCyqtKonQAJIUQZpTl1E",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "Xc6MX8HvI2I"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-20T20:21:54Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e22 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Xc6MX8HvI2I/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Xc6MX8HvI2I/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Xc6MX8HvI2I/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-20T20:21:54Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "mfGmotYJUW-96zsRwUAQs977_nI",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "PLXtxYqeB0MpHwYJbFh3KQ8VG4nMd8UQAJ"
+      },
+      "snippet": {
+        "publishedAt": "2019-02-19T05:39:01Z",
+        "channelId": "UCv_w4fsMH9qMWk_o9onnwaA",
+        "title": "The Netherverse",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/MsTWpbR_TVE/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/MsTWpbR_TVE/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/MsTWpbR_TVE/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Stacy Jaxx",
+        "liveBroadcastContent": "none",
+        "publishTime": "2019-02-19T05:39:01Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "dzy2WQFURLNbzajIqBpApX_I-OY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "KMitwmXnyAE"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-01T23:45:22Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e1 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/KMitwmXnyAE/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/KMitwmXnyAE/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/KMitwmXnyAE/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-01T23:45:22Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "PDI82OK6-gZ1ELsIjklXdMcabzc",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "BzJB7_X_6KE"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-16T00:51:14Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e18 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/BzJB7_X_6KE/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/BzJB7_X_6KE/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/BzJB7_X_6KE/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-16T00:51:14Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "k8ZADeycbzah9dkHQPGZm2ySly4",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "vctjf826lms"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-09T14:45:46Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e10 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/vctjf826lms/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/vctjf826lms/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/vctjf826lms/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-09T14:45:46Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "73Yv0ODfrb9iFAzy-A2JnAQeWaY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "BqttDIYYNJg"
+      },
+      "snippet": {
+        "publishedAt": "2020-12-28T23:15:36Z",
+        "channelId": "UCcOQWc5D81M7Xb5Dcr0d0Ew",
+        "title": "Netherverse 2 in 1 Gravity Switch",
+        "description": "only possible on 1.00.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/BqttDIYYNJg/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/BqttDIYYNJg/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/BqttDIYYNJg/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "suibom",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-12-28T23:15:36Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "jM03jbf6a97XEj-yhb_5E96e2tI",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "-MMHCxeXfuo"
+      },
+      "snippet": {
+        "publishedAt": "2018-01-04T15:02:36Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e5 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/-MMHCxeXfuo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/-MMHCxeXfuo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/-MMHCxeXfuo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-01-04T15:02:36Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "mHl2R6baDOGS2YvPzpAPBpEQ4DU",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "nLLt-bZQLXo"
+      },
+      "snippet": {
+        "publishedAt": "2022-12-30T01:06:42Z",
+        "channelId": "UCb-dFDSfO6I3fu8u5YqAPdA",
+        "title": "minecraft ft. netherverse&#39;s mom",
+        "description": "i did some speedrunning with a friend. subscribe for a free pizza.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/nLLt-bZQLXo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/nLLt-bZQLXo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/nLLt-bZQLXo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "abbalox",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-12-30T01:06:42Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "3CUHjB3nFJhtMYBEkU4bhF_l35w",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "Ya0cklonro4"
+      },
+      "snippet": {
+        "publishedAt": "2018-02-05T00:30:48Z",
+        "channelId": "UCzyl-cW2F9GC1dr8Yog-cUw",
+        "title": "FILM THEORY -s1e25 Cinematic Extended Netherverse - CEN",
+        "description": "Description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Ya0cklonro4/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Ya0cklonro4/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Ya0cklonro4/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "GFL RECORDS GFLmakesbeats! GFLFG",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-02-05T00:30:48Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "Ya1T-zHEhY-NonYzLad8pHoZKWs",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "gM2fJpkvRCo"
+      },
+      "snippet": {
+        "publishedAt": "2023-05-19T21:35:54Z",
+        "channelId": "UCwNVe-bwkoN278SxXG83Kbg",
+        "title": "Video Game Idea: Project X Zone Netherverse Unbound [Episode Vabel Cast: Netherverse&#39;s Twilight]",
+        "description": "A Crossover Tactical RPG game idea that involving characters from Bandai Namco, Capcom, SEGA, Nintendo and Nippon Ichi ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/gM2fJpkvRCo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/gM2fJpkvRCo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/gM2fJpkvRCo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "SuperSonic93",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-05-19T21:35:54Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+[platform]
+youtube = { api_key = "", enabled_features = [ "VIDEOS", "STREAMS", "SHORTS", "COMMUNITY_POSTS" ] }
+twitch = { client_id = "", client_secret = "" }
+
+[database]
+connection_string = ""
+
+[bot]
+client_id = 0
+bot_token = "disnake_BOT_TOKEN_HERE"
+state = "DND"
+status = [
+    { type = "PLAYING", name = "nothing" },
+    { type = "PLAYING", name = "with {bot.totalusers} users" },
+]
+status_delay = 600 
+
+[logging]
+level = "DEBUG"
+out_dir = "{cfgdir}/logs"
+webhook = { enabled = true, level = "WARNING", url = "disnake_WEBHOOK_URL" }
+
+[services]
+youtube = { dynamic_channel_message_info = true, dynamic_channel_vcname_info = true, channel_releases = true, milestone_notifications = true }
+twitch = { dynamic_channel_message_info = true, dynamic_channel_vcname_info = true, milestone_notifications = true, event_notifications = true }
