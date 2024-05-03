@@ -1,6 +1,29 @@
 {
-    "CMD_YTINFO_NAME": "yt-info",
     "CMD_YTINFO_DESC": "Zeigt Informationen zu einem YouTube-Kanal, Video oder einer Playlist an.",
-    "CMD_YTINFO_VIDEO_NAME": "video",
-    "CMD_YTINFO_VIDEO_DESC": "Zeigt Informationen zu einem YouTube-Video an."
+    "CMD_YTINFO_VIDEO_DESC": "Zeigt Informationen zu einem YouTube-Video an.",
+    "CMD_ABOUT_DESC": "Über Y2DL und den Bot",
+    "CMD_TWINFO_DESC": "Zeigt Informationen über einen Twitch-Sender und Videos an.",
+    "CMD_TWINFO_CHANNEL_DESC": "Zeigt Informationen über einen Twitch-Sender an",
+
+    "Y2DL_VER": "Verwendung von Y2DL {0}",
+
+    "FOLLOWERS": "Anhänger",
+    "BROADCASTER_TYPE": "Sendertyp",
+    "CREATED_AT": "Hergestellt in",
+    "STREAMING": "Ich spiele {0}",
+    "VIEWS": "Ansichten",
+    "STARTED_AT": "Fing an bei",
+    "PREVIOUSLY_STREAMED": "Zuvor gestreamt",
+    "DURATION": "Dauer",
+
+    "TWTYPE_DEFAULT": "Standard",
+    "TWTYPE_AFFILIATE": "Twitch-Affiliate",
+    "TWTYPE_PARTNER": "Twitch-Partner",
+
+    "ERR_FETCH_STREAMER": "Der Sender kann nicht gefunden werden oder es ist ein Fehler aufgetreten!",
+    "ERR_FETCH_STREAMER_DESC": "Stellen Sie sicher, dass Sie mindestens eines und nicht beides verwendet haben.",
+    "ERR_FETCH_CHANNEL": "",
+    "ERR_FETCH_CHANNEL_DESC": "",
+    "ERR_CMD_CHNL_TOO_MANY": "Es darf nur entweder „channel_id“ oder „channel_handle“ definiert werden.",
+    "ERR_CMD_CHNL_TOO_MANY_DESC": "Stellen Sie sicher, dass Sie mindestens eines und nicht beides verwendet haben."
 }

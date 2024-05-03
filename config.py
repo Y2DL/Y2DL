@@ -63,6 +63,14 @@ class TwitchServicesConfig:
         self.milestone_notifications = milestone_notifications
         self.event_notifications = event_notifications
 
+class ColorsConfig:
+    def __init__(self, primary, secondary, success, error, invis):
+        self.primary = primary
+        self.secondary = secondary
+        self.success = success
+        self.error = error
+        self.invis = invis
+
 def load_config():
     with open('config/config.toml', 'r') as f:
         config_data = toml.load(f)
@@ -84,4 +92,6 @@ def load_config():
         twitch=TwitchServicesConfig(**config_data['services']['twitch'])
     )
 
-    return platform, database, bot, logging, services
+    colors = ColorsConfig(**config_data['colors'])
+
+    return platform, database, bot, logging, services, colors

@@ -1,6 +1,4 @@
 {
-    "CMD_YTINFO_NAME": "ytinfo",
     "CMD_YTINFO_DESC": "YouTube チャンネル、ビデオ、またはプレイリストに関する情報を表示します。",
-    "CMD_YTINFO_VIDEO_NAME": "ビデオ",
     "CMD_YTINFO_VIDEO_DESC": "YouTube ビデオに関する情報を表示します。"
 }

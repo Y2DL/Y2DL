@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import logging
 
 class Y2dlDatabase:
     def __init__(self, connection_string):
@@ -8,8 +9,8 @@ class Y2dlDatabase:
     def get_guild_config(self, guild_id):
         cfgs = self.db["guild_config"]
         query = { "guild_id": f"{guild_id}" }
-        cfg = cfgs.find(query)
-        return cfg if cfg else None
+        cfg = cfgs.find(query, limit=1)
+        return None if cfgs.count_documents(query, limit=1) < 1 else cfg if cfg else None
 
     def init_guild_config(self, guild_id):
         cfgs = self.db["guild_config"]
@@ -53,20 +54,21 @@ class Y2dlDatabase:
             }
         }
         query = { "guild_id": f"{guild_id}" }
-        cfg = cfgs.find(query)
-        if not cfg:
+        cfg = cfgs.count_documents(query, limit=1)
+        if cfg < 1:
             cfgs.insert_one(def_cfg)
+            logging.info(f'Configured guild {guild_id}')
 
     def del_guild_config(self, guild_id):
         cfgs = self.db["guild_config"]
         query = { "guild_id": f"{guild_id}" }
-        cfg = cfgs.find(query)
-        if cfg:
+        cfg = cfgs.count_documents(query, limit=1)
+        if cfg >= 1:
             cfgs.delete_one(query)
 
     def set_guild_config(self, guild_id, guild_config):
         cfgs = self.db["guild_config"]
         query = { "guild_id": f"{guild_id}" }
-        cfg = cfgs.find(query)
-        if cfg:
+        cfg = cfgs.count_documents(query, limit=1)
+        if cfg >= 1:
             cfgs.update_one(query, {"$set": guild_config})

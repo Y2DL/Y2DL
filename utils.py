@@ -1,3 +1,12 @@
+import requests
+from typing import Union, Optional, Any
+from disnake import Embed, Colour
+from disnake.types.embed import EmbedType
+import datetime
+from config import load_config
+
+platform, database, bot, logging, services, color = load_config()
+
 class StringUtils:
     def limit(input_str, max_length):
         if input_str is None:
@@ -19,3 +28,19 @@ class IntUtils:
             number /= 1000.0
         formatted_number = "{:.2f}{}".format(number, num_suffixes[magnitude]) if num_suffixes[magnitude] else "{:.0f}".format(number)
         return formatted_number
+
+class EmbedUtils:
+    def primary(*, title: Optional[Any]=None, description: Optional[Any]=None, url: Optional[Any]=None):
+        return Embed(title = title, description = description, url = url, color = int(color.primary, 0))
+    
+    def secondary(*, title: Optional[Any]=None, description: Optional[Any]=None, url: Optional[Any]=None):
+        return Embed(title = title, description = description, url = url, color = int(color.secondary, 0))
+
+    def success(*, title: Optional[Any]=None, description: Optional[Any]=None, url: Optional[Any]=None):
+        return Embed(title = title, description = description, url = url, color = int(color.success, 0))
+
+    def error(*, title: Optional[Any]=None, description: Optional[Any]=None, url: Optional[Any]=None):
+        return Embed(title = title, description = description, url = url, color = int(color.error, 0))
+
+    def invis(*, title: Optional[Any]=None, description: Optional[Any]=None, url: Optional[Any]=None):
+        return Embed(title = title, description = description, url = url, color = int(color.invis, 0))
