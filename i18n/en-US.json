@@ -46,5 +46,5 @@
     "ERR_FETCH_VIDEO": "Can't find the video you specified!",
     "ERR_FETCH_VIDEO_DESC": "Make sure you have inputed the video ID right.",
     "ERR_CMD_CHNL_TOO_MANY": "Only one of `channel_id` or `channel_handle` must be defined.",
-    "ERR_CMD_CHNL_TOO_MANY_DESC": "Make sure you have used at least and only one and not both."
+    "ERR_CMD_CHNL_TOO_MANY_DESC": "Make sure you have used at least one, and not both."
 }
