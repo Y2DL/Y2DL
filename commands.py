@@ -16,7 +16,7 @@ async def init_slash_commands(client):
 
     @client.slash_command(
         name="about",
-        description=Localized("About Y2DL and the bot", key="CMD_ABOUT_DESC")
+        description=Localized(key="CMD_ABOUT_DESC")
     )
     async def about(inter: ApplicationCommandInteraction):
         ver = "v2.0.0"
@@ -25,7 +25,7 @@ async def init_slash_commands(client):
         ).set_thumbnail(
             url = inter.bot.user.avatar.url
         ).add_field(
-            locale.get("Using Y2DL {0}", "Y2DL_VER", inter.locale).format(ver),
+            locale.get("Y2DL_VER", inter.locale).format(ver),
             "by jbcarreon123",
             inline=True
         )
@@ -60,48 +60,48 @@ async def init_slash_commands(client):
             ).set_thumbnail(
                 url = chnl.profile_image_url
             ).add_field(
-                locale.get("Followers", "FOLLOWERS", inter.locale),
+                locale.get("FOLLOWERS", inter.locale),
                 IntUtils.humanize_number(chnl.followers),
                 inline = True
             ).add_field(
-                locale.get("Broadcaster Type", "BROADCASTER_TYPE", inter.locale),
+                locale.get("BROADCASTER_TYPE", inter.locale),
                 chnl.type_name,
                 inline = True
             ).add_field(
-                locale.get("Created at", "CREATED_AT", inter.locale),
+                locale.get("CREATED_AT", inter.locale),
                 f"<t:{int(chnl.created_at.timestamp())}>",
                 inline = True
             )
             if (chnl.stream is not None):
                 embed.add_field(
-                    locale.get("Playing {0}", "STREAMING", inter.locale).format(chnl.stream.game_name),
+                    locale.get("STREAMING_GAME", inter.locale).format(chnl.stream.game_name),
                     chnl.stream.title,
                     inline = False
                 ).add_field(
-                    locale.get("Views", "VIEWS", inter.locale),
+                    locale.get("VIEWS", inter.locale),
                     IntUtils.humanize_number(chnl.stream.viewer_count),
                     inline = True
                 ).add_field(
-                    locale.get("Started at", "STARTED_AT", inter.locale),
+                    locale.get("STARTED_AT", inter.locale),
                     f"<t:{int(chnl.stream.started_at.timestamp())}>",
                     inline = True
                 )
             elif (chnl.last_stream is not None):
                 dur = isodate.parse_duration("PT" + chnl.last_stream.duration.upper())
                 embed.add_field(
-                    locale.get("Previously streamed", "PREVIOUSLY_STREAMED", inter.locale),
+                    locale.get("PREVIOUSLY_STREAMED", inter.locale),
                     f"[**{chnl.last_stream.title}**](https://twitch.tv/videos/{chnl.last_stream.id})\n{chnl.description}",
                     inline = False
                 ).add_field(
-                    locale.get("Views", "VIEWS", inter.locale),
+                    locale.get("VIEWS", inter.locale),
                     IntUtils.humanize_number(chnl.last_stream.view_count),
                     inline = True
                 ).add_field(
-                    locale.get("Duration", "DURATION", inter.locale),
+                    locale.get("DURATION", inter.locale),
                     dur,
                     inline = True
                 ).add_field(
-                    locale.get("Started at", "STARTED_AT", inter.locale),
+                    locale.get("STARTED_AT", inter.locale),
                     f"<t:{int(chnl.last_stream.created_at.timestamp())}>",
                     inline = True
                 )
@@ -109,8 +109,8 @@ async def init_slash_commands(client):
         except:
             await inter.followup.send(
                 embed=EmbedUtils.error(
-                    title=locale.get("Can't find the broadcaster or an error occurred!", "ERR_FETCH_STREAMER", inter.locale),
-                    description=locale.get("Make sure you have used at least and only one and not both.", "ERR_FETCH_STREAMER_DESC", inter.locale)
+                    title=locale.get("ERR_FETCH_STREAMER", inter.locale),
+                    description=locale.get("ERR_FETCH_STREAMER_DESC", inter.locale)
                 )
             )
 
@@ -120,21 +120,21 @@ async def init_slash_commands(client):
     )
     async def channel(inter: ApplicationCommandInteraction, channel_id: str = None, channel_handle: str = None):
         await inter.response.defer()
-        if (channel_id is None and channel_handle is None) or (channel_id is str and channel_handle is str):
+        if (channel_id is None and channel_handle is None) or (channel_id != None and channel_handle != None):
             await inter.followup.send(
                 embed=EmbedUtils.error(
-                    title="Only one of `channel_id` or `channel_handle` must be defined.",
-                    description="Make sure you have used at least and only one and not both."
+                    title=locale.get("ERR_CMD_CHNL_TOO_MANY", inter.locale),
+                    description=locale.get("ERR_CMD_CHNL_TOO_MANY_DESC", inter.locale)
                 )
             )
             return
         chnls = ytHelper.get_channels(channel_id, channel_handle)
-        print(json.dumps(chnls))
+
         if ("items" not in chnls or len(chnls["items"]) < 1):
             await inter.followup.send(
                 embed=EmbedUtils.error(
-                    title="Can't find the channel!",
-                    description="Make sure you have input the channel ID or handle right."
+                    title=locale.get("ERR_FETCH_CHANNEL", inter.locale),
+                    description=locale.get("ERR_FETCH_CHANNEL_DESC", inter.locale),
                 )
             )
             return
@@ -147,19 +147,19 @@ async def init_slash_commands(client):
         ).set_thumbnail(
             url = chnls["items"][0]["snippet"]["thumbnails"]["high"]["url"]
         ).add_field(
-            "Subscribers",
+            locale.get("SUBSCRIBERS", inter.locale),
             IntUtils.humanize_number(chnls["items"][0]["statistics"]["subscriberCount"]),
             inline = True
         ).add_field(
-            "Views",
+            locale.get("VIEWS", inter.locale),
             IntUtils.humanize_number(chnls["items"][0]["statistics"]["viewCount"]),
             inline = True
         ).add_field(
-            "Videos",
+            locale.get("VIDEOS", inter.locale),
             IntUtils.humanize_number(chnls["items"][0]["statistics"]["videoCount"]),
             inline = True
         ).add_field(
-            "Created at",
+            locale.get("CREATED_AT", inter.locale),
             f"<t:{pub_at}>",
             inline = True
         )
@@ -169,36 +169,36 @@ async def init_slash_commands(client):
             pub_at_vid = int(parser.parse(vids["items"][0]["snippet"]["publishedAt"]).timestamp())
             dur = isodate.parse_duration(vid["items"][0]["contentDetails"]["duration"])
             embed.add_field(
-                "Latest Video",
+                locale.get("LATEST_CONTENT", inter.locale),
                 f'[**{vids["items"][0]["snippet"]["title"]}**](https://youtu.be/{vids["items"][0]["snippet"]["resourceId"]["videoId"]})\n' +
                 StringUtils.limit(vids["items"][0]["snippet"]["description"], 100),
                 inline = False
             ).add_field(
-                "Views",
+                locale.get("VIEWS", inter.locale),
                 IntUtils.humanize_number(vid["items"][0]["statistics"]["viewCount"]),
                 inline = True
             ).add_field(
-                "Likes",
+                locale.get("LIKES", inter.locale),
                 IntUtils.humanize_number(vid["items"][0]["statistics"]["likeCount"]),
                 inline = True
             ).add_field(
-                "Dislikes [*]",
+                locale.get("DISLIKES", inter.locale),
                 IntUtils.humanize_number(ryd_res["dislikes"]),
                 inline = True
             ).add_field(
-                "Comments",
+                locale.get("COMMENTS", inter.locale),
                 IntUtils.humanize_number(vid["items"][0]["statistics"]["commentCount"]),
                 inline = True
             ).add_field(
-                "Published at",
+                locale.get("PUBLISHED_AT", inter.locale),
                 f"<t:{pub_at_vid}>",
                 inline = True
             ).add_field(
-                "Duration",
+                locale.get("DURATION", inter.locale),
                 dur,
                 inline = True
             ).set_footer(
-                text = "[*] uses the Return YouTube Dislike API, so it might be inaccurate"
+                text = locale.get("DISLIKES_NOTE", inter.locale)
             )
 
         await inter.followup.send(embed=embed)
@@ -213,8 +213,8 @@ async def init_slash_commands(client):
         if ("items" not in vids or len(vids["items"]) < 1):
             await inter.followup.send(
                 embed=EmbedUtils.error(
-                    title="Can't find the channel!",
-                    description="Make sure you have input video ID right."
+                    title=locale.get("ERR_FETCH_VIDEO", inter.locale),
+                    description=locale.get("ERR_FETCH_VIDEO_DESC", inter.locale)
                 )
             )
             return
@@ -231,31 +231,43 @@ async def init_slash_commands(client):
         ).set_thumbnail(
             url = vids["items"][0]["snippet"]["thumbnails"]["medium"]["url"]
         ).add_field(
-            "Views",
+            locale.get("VIEWS", inter.locale),
             IntUtils.humanize_number(vids["items"][0]["statistics"]["viewCount"]),
             inline = True
         ).add_field(
-            "Likes",
+            locale.get("LIKES", inter.locale),
             IntUtils.humanize_number(vids["items"][0]["statistics"]["likeCount"]),
             inline = True
         ).add_field(
-            "Dislikes [*]",
+            locale.get("DISLIKES", inter.locale),
             IntUtils.humanize_number(ryd_res["dislikes"]),
             inline = True
         ).add_field(
-            "Comments",
+            locale.get("COMMENTS", inter.locale),
             IntUtils.humanize_number(vids["items"][0]["statistics"]["commentCount"]),
             inline = True
         ).add_field(
-            "Published at",
+            locale.get("PUBLISHED_AT", inter.locale),
             f"<t:{pub_at}>",
             inline = True
         ).add_field(
-            "Duration",
+            locale.get("DURATION", inter.locale),
             dur,
             inline = True
+        ).add_field(
+            locale.get("PUBLICITY", inter.locale),
+            vids["items"][0]["status"]["privacyStatus"].capitalize(),
+            inline = True
+        ).add_field(
+            locale.get("VIDEO_TYPE", inter.locale),
+            vids["items"][0]["snippet"]["videoType"].value,
+            inline = True
+        ).add_field(
+            locale.get("LICENSE", inter.locale),
+            vids["items"][0]["status"]["license"].capitalize(),
+            inline = True
         ).set_footer(
-            text = "[*] uses the Return YouTube Dislike API, so it might be inaccurate"
+            text = locale.get("DISLIKES_NOTE", inter.locale)
         )
         if "tags" in vids["items"][0]["snippet"]:
             embed.add_field(

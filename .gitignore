@@ -2,3 +2,4 @@ logs/
 config/
 .venv/
 __pycache__/
+priv/

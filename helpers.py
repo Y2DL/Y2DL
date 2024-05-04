@@ -2,12 +2,41 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from twitchAPI.twitch import Twitch, VideoType
 from twitchAPI.helper import first
+from enum import Enum
 import logging
 import sys
 import datetime
 import requests
 import os
 import json
+
+class LocalizationHelper:
+    def __init__(self):
+        dir = os.fsencode('i18n/')
+        self.locales = {}
+        for file in os.listdir(dir):
+            fn = os.fsdecode(file)
+            if fn.endswith('.json'):
+                filename = os.path.splitext(fn)[0]  # Get filename without extension
+                with open(os.path.join('i18n', fn), 'r') as f:
+                    self.locales[filename] = json.load(f)
+    
+    def get(self, key, country_code):
+        code = country_code.value
+        if code in self.locales and key in self.locales[code]:
+            return self.locales[code][key]
+        else:
+            return self.locales["en-US"][key]
+
+locale = LocalizationHelper()
+
+class YtVideoType(str, Enum):
+    Video = 'Video'
+    StreamScheduled = 'Scheduled Stream'
+    StreamOngoing = 'Ongoing Stream'
+    StreamFinished = 'Finished Stream'
+    VideoPremiereScheduled = 'Scheduled Premiere'
+    VideoPremiereOngoing = 'Ongoing Premiere'
 
 class LoggingHelperFormatter(logging.Formatter):
     def __init__(self, fmt=None, datefmt=None, style='%'):
@@ -39,30 +68,11 @@ class LoggingHelper:
         logger.addHandler(fileHandler)
         logger.addHandler(conHandler)
 
-class LocalizationHelper:
-    def __init__(self):
-        dir = os.fsencode('locale/')
-        self.locales = {}
-        for file in os.listdir(dir):
-            fn = os.fsdecode(file)
-            if fn.endswith('.json'):
-                filename = os.path.splitext(fn)[0]  # Get filename without extension
-                with open(os.path.join('locale', fn), 'r') as f:
-                    self.locales[filename] = json.load(f)
-    
-    def get(self, default, key, country_code):
-        code = country_code.value
-        if code in self.locales and key in self.locales[code]:
-            return self.locales[code][key]
-        else:
-            return default
-
 class TwitchHelper:
     def __init__(self, client_id, client_secret):
         self.client_id = client_id
         self.client_secret = client_secret
         self.twitch_api = None
-        self.locale = LocalizationHelper()
 
     async def initialize(self):
         self.twitch_api = await Twitch(self.client_id, self.client_secret)
@@ -75,11 +85,11 @@ class TwitchHelper:
         flw = await self.twitch_api.get_channel_followers(tw.id)
         tw.followers = flw.total
         if tw.broadcaster_type == "affiliate":
-            tw.type_name = self.locale.get("Affiliate", "TWTYPE_AFFILIATE", code)
+            tw.type_name = locale.get("TWTYPE_AFFILIATE", code)
         elif tw.broadcaster_type == "partner":
-            tw.type_name = self.locale.get("Partner", "TWTYPE_PARTNER", code)
+            tw.type_name = locale.get("TWTYPE_PARTNER", code)
         else:
-            tw.type_name = self.locale.get("Default", "TWTYPE_DEFAULT", code)
+            tw.type_name = locale.get("TWTYPE_DEFAULT", code)
         return tw
 
 class YoutubeHelper:
@@ -113,12 +123,29 @@ class YoutubeHelper:
 
     def get_videos(self, video_ids):
         req = self.yt_api.videos().list(
-            part = 'snippet,statistics,contentDetails,liveStreamingDetails',
+            part = 'snippet,statistics,contentDetails,liveStreamingDetails,status',
             id = video_ids,
             maxResults = 50
         )
         try:
             res = req.execute()
+            for item in res["items"]:
+                vidType = YtVideoType.Video
+                if "liveStreamingDetails" in item:
+                    if item["snippet"]["liveBroadcastContent"] == "none":
+                        if "actualEndTime" in item["liveStreamingDetails"]:
+                            vidType = YtVideoType.StreamFinished
+                    elif item["status"]["uploadStatus"] == "processed":
+                        if "actualStartTime" in item["liveStreamingDetails"]:
+                            vidType = YtVideoType.VideoPremiereOngoing
+                        else:
+                            vidType = YtVideoType.VideoPremiereScheduled
+                    elif item["status"]["uploadStatus"] == "uploaded":
+                        if "concurrentViewers" in item["liveStreamingDetails"]:
+                            vidType = YtVideoType.StreamOngoing
+                        else:
+                            vidType = YtVideoType.StreamScheduled
+                res["items"][res["items"].index(item)]["snippet"]["videoType"] = vidType
             return res
         except:
             return {"items": []}

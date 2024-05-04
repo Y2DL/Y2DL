@@ -20,6 +20,6 @@ LoggingHelper.init_logging()
 client = Y2dlMain(shard_count=1)
 loop = asyncio.get_event_loop()
 loop.run_until_complete(init_slash_commands(client))
-client.i18n.load('locale/')
+client.i18n.load('i18n/')
 client.run(bot.bot_token)
 

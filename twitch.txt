@@ -1,7 +1,0 @@
-q7ccbmbwfah97swyovr1tuiqwrf5t4
-tqxjruzvcqy69o5r1zih79zn5sv8y6
-user:read:broadcast+channel:read:hype_train+channel:read:polls+channel:read:predictions+channel:read:goals
-
-https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=q7ccbmbwfah97swyovr1tuiqwrf5t4&redirect_uri=http://localhost&scope=bits:read+channel:read:hype_train+channel:read:predictions+channel:read:goals+channel:read:charity+channel:read:guest_star&force_verify=true
-
-https://id.twitch.tv/oauth2/authorize?client_id=kk78g5c3q09seqtscsycxqm58vqe1c&redirect_uri=https://dashboard.sapph.xyz/api/v2/guilds/0/features/social-notifications/auth/redirect?platform=twitch&response_type=code&state=oayByGT_CbUID72x_poiv&force_verify=true
