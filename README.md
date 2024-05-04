@@ -3,7 +3,7 @@
 # Y2DL (Python version)
 ![GitHub all releases](https://img.shields.io/github/downloads/jbcarreon123/Y2DL/total) [![Discord](https://img.shields.io/discord/1135815464891732089)](https://discord.gg/P5ecFZNyCc)
 
-Gets channel info from one or multiple channels, and sends it on a Text channel or on a Voice channel.   
+Fetches YouTube or Twitch channel, video, playlist (or others) info and sends it to a human-readable format in a Discord channel.
 
 **Note that this is NOT a YouTube Downloader.**
 
