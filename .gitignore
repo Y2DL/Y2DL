@@ -3,3 +3,4 @@ config/
 .venv/
 __pycache__/
 priv/
+.vscode/
