@@ -13,7 +13,11 @@ platform, database, bot, logging, services, color = config.load_config()
 
 class Y2dlMain(commands.AutoShardedInteractionBot):
     async def on_ready(self):
-        log.info(f'Ready as bot "{self.user}"!')
+        db = Y2dlDatabase(database.connection_string)
+        for guild in self.guilds:
+            if db.get_guild_config(guild.id) == None:
+                db.init_guild_config(guild.id)
+        log.info(f'Ready as bot "{self.user}"!')        
 
 Embed.set_default_colour(int(color.primary, 0))
 LoggingHelper.init_logging()

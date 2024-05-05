@@ -3,6 +3,7 @@ from googleapiclient.errors import HttpError
 from twitchAPI.twitch import Twitch, VideoType
 from twitchAPI.helper import first
 from enum import Enum
+from cachetools.func import ttl_cache
 import logging
 import sys
 import datetime
@@ -79,6 +80,7 @@ class TwitchHelper:
     async def initialize(self):
         self.twitch_api = await Twitch(self.client_id, self.client_secret)
 
+    @ttl_cache(maxsize=10, ttl=600)
     async def get_channel(self, login_names, code):
         tw = await first(self.twitch_api.get_users(logins=login_names))
         tw.stream = await first(self.twitch_api.get_streams(user_login=login_names))
@@ -98,6 +100,7 @@ class YoutubeHelper:
     def __init__(self, api_key):
         self.yt_api = build('youtube', 'v3', developerKey=api_key)
 
+    @ttl_cache(maxsize=10, ttl=600)
     def get_playlistitems(self, playlist_id):
         req = self.yt_api.playlistItems().list(
             part = 'snippet,contentDetails',
@@ -110,6 +113,7 @@ class YoutubeHelper:
         except:
             return {"items": []}
 
+    @ttl_cache(maxsize=10, ttl=600)
     def get_channels(self, channel_ids = None, channel_handle = None):
         req = self.yt_api.channels().list(
             part = 'snippet,statistics,contentDetails',
@@ -123,6 +127,7 @@ class YoutubeHelper:
         except:
             return {"items": []}
 
+    @ttl_cache(maxsize=10, ttl=600)
     def get_videos(self, video_ids):
         req = self.yt_api.videos().list(
             part = 'snippet,statistics,contentDetails,liveStreamingDetails,status',
@@ -153,6 +158,7 @@ class YoutubeHelper:
             return {"items": []}
 
 class ReturnYoutubeDislikeHelper:
+    @ttl_cache(maxsize=10, ttl=600)
     def get_dislikes(video_id):
         res = requests.get(f"https://returnyoutubedislikeapi.com/votes?videoId={video_id}")
         return res.json()

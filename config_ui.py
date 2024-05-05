@@ -7,4 +7,3 @@ import json
 import isodate
 
 platform, database, bot, logging, services = load_config()
-
