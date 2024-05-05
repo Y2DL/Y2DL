@@ -31,12 +31,14 @@ class LocalizationHelper:
 locale = LocalizationHelper()
 
 class YtVideoType(str, Enum):
-    Video = 'Video'
-    StreamScheduled = 'Scheduled Stream'
-    StreamOngoing = 'Ongoing Stream'
-    StreamFinished = 'Finished Stream'
-    VideoPremiereScheduled = 'Scheduled Premiere'
-    VideoPremiereOngoing = 'Ongoing Premiere'
+    Video = 'YTVIDTYPE_VIDEO'
+    StreamScheduled = 'YTVIDTYPE_STR_SCHEDULED'
+    StreamOngoing = 'YTVIDTYPE_STR_ONGOING'
+    StreamFinished = 'YTVIDTYPE_STR_FINISHED'
+    VideoPremiereScheduled = 'YTVIDTYPE_PRE_SCHEDULED'
+    VideoPremiereOngoing = 'YTVIDTYPE_PRE_ONGOING'
+    def toLocale(self, country_code):
+        return locale.get(self.value, country_code)
 
 class LoggingHelperFormatter(logging.Formatter):
     def __init__(self, fmt=None, datefmt=None, style='%'):

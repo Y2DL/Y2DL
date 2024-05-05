@@ -1,5 +1,5 @@
 from disnake import Localized, ApplicationCommandInteraction, Embed, ui
-from helpers import YoutubeHelper, ReturnYoutubeDislikeHelper, TwitchHelper, LocalizationHelper
+from helpers import YoutubeHelper, ReturnYoutubeDislikeHelper, TwitchHelper, LocalizationHelper, YtVideoType
 from config import load_config
 from dateutil import parser
 from utils import StringUtils, IntUtils, EmbedUtils
@@ -28,26 +28,29 @@ async def init_slash_commands(client):
             locale.get("Y2DL_VER", inter.locale).format(ver),
             "by jbcarreon123",
             inline=True
+        ).add_field(
+            f'Language: {locale.get("LANG_NAME", inter.locale)}',
+            f'by {locale.get("LANG_TRANSLATOR", inter.locale)}'
         )
         await inter.response.send_message(embed=embed)
 
     @client.slash_command(
         name="ytinfo",
-        description=Localized("Shows information about a YouTube channel, video, or a playlist.", key="CMD_YTINFO_DESC")
+        description=Localized(key="CMD_YTINFO_DESC")
     )
     async def ytinfo(inter: ApplicationCommandInteraction):
         pass
 
     @client.slash_command(
         name="twinfo",
-        description=Localized("Shows information about a Twitch broadcaster, and videos.", key="CMD_TWINFO_DESC")
+        description=Localized(key="CMD_TWINFO_DESC")
     )
     async def twinfo(inter: ApplicationCommandInteraction):
         pass
 
     @twinfo.sub_command(
         name="broadcaster",
-        description=Localized("Shows information about a Twitch broadcaster", key="CMD_TWINFO_CHANNEL_DESC")
+        description=Localized(key="CMD_TWINFO_CHANNEL_DESC")
     )
     async def broadcaster(inter: ApplicationCommandInteraction, login_name_or_id: str):
         await inter.response.defer()
@@ -116,7 +119,7 @@ async def init_slash_commands(client):
 
     @ytinfo.sub_command(
         name="channel",
-        description=Localized("Shows information about a YouTube Channel", key="CMD_YTINFO_CHANNEL_DESC")
+        description=Localized(key="CMD_YTINFO_CHANNEL_DESC")
     )
     async def channel(inter: ApplicationCommandInteraction, channel_id: str = None, channel_handle: str = None):
         await inter.response.defer()
@@ -169,7 +172,7 @@ async def init_slash_commands(client):
             pub_at_vid = int(parser.parse(vids["items"][0]["snippet"]["publishedAt"]).timestamp())
             dur = isodate.parse_duration(vid["items"][0]["contentDetails"]["duration"])
             embed.add_field(
-                locale.get("LATEST_CONTENT", inter.locale),
+                locale.get("LATEST_CONTENT", inter.locale).format(vid["items"][0]["snippet"]["videoType"].toLocale(inter.locale)),
                 f'[**{vids["items"][0]["snippet"]["title"]}**](https://youtu.be/{vids["items"][0]["snippet"]["resourceId"]["videoId"]})\n' +
                 StringUtils.limit(vids["items"][0]["snippet"]["description"], 100),
                 inline = False
@@ -205,7 +208,7 @@ async def init_slash_commands(client):
 
     @ytinfo.sub_command(
         name="video",
-        description=Localized("Shows information about a YouTube video.", key="CMD_YTINFO_VIDEO_DESC")
+        description=Localized(key="CMD_YTINFO_VIDEO_DESC")
     )
     async def video(inter: ApplicationCommandInteraction, video_id: str):
         await inter.response.defer()
@@ -260,7 +263,7 @@ async def init_slash_commands(client):
             inline = True
         ).add_field(
             locale.get("VIDEO_TYPE", inter.locale),
-            vids["items"][0]["snippet"]["videoType"].value,
+            vids["items"][0]["snippet"]["videoType"].toLocale(inter.locale),
             inline = True
         ).add_field(
             locale.get("LICENSE", inter.locale),

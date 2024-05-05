@@ -1,6 +1,10 @@
 {
+    "LANG_NAME": "English (US)",
+    "LANG_TRANSLATOR": "jbcarreon123",
+
     "CMD_YTINFO_DESC": "Shows information about a YouTube channel, video, or a playlist.",
-    "CMD_YTINFO_VIDEO_DESC": "Shows information about a YouTube channel.",
+    "CMD_YTINFO_VIDEO_DESC": "Shows information about a YouTube video.",
+    "CMD_YTINFO_CHANNEL_DESC": "Shows information about a YouTube channel.",
     "CMD_ABOUT_DESC": "About the bot or Y2DL",
     "CMD_TWINFO_DESC": "Shows information about a Twitch broadcaster, and videos.",
     "CMD_TWINFO_CHANNEL_DESC": "Shows information about a Twitch broadcaster",
@@ -12,10 +16,6 @@
     "CREATED_AT": "Created at",
     "STREAMING_GAME": "Playing {0}",
     "LATEST_CONTENT": "Latest {0}",
-    "STREAMING_NON_GAME": "Currently Streaming",
-    "STREAMING_PREMIERE": "Currently Premiering",
-    "STREAMING_SOON": "Streaming Soon",
-    "PREMIERE_SOON": "Premiering Soon",
     "TAGS": "Tags",
     "LIKES": "Likes",
     "DISLIKES": "Dislikes*",
@@ -37,7 +37,11 @@
     "TWTYPE_PARTNER": "Partner",
 
     "YTVIDTYPE_VIDEO": "Video",
-    "YTVIDTYPE_STREAM": "Stream",
+    "YTVIDTYPE_STR_SCHEDULED": "Scheduled Livestream",
+    "YTVIDTYPE_STR_ONGOING": "Ongoing Livestream",
+    "YTVIDTYPE_STR_FINISHED": "Livestream Replay",
+    "YTVIDTYPE_PRE_SCHEDULED": "Scheduled Video Premiere",
+    "YTVIDTYPE_PRE_ONGOING": "Ongoing Video Premiere",
 
     "ERR_FETCH_STREAMER": "Can't find the broadcaster or an error occurred!",
     "ERR_FETCH_STREAMER_DESC": "Make sure you have inputted the streamer's login name right (note: `twitch.tv/[login name]`).",
