@@ -48,7 +48,9 @@
     "ERR_FETCH_CHANNEL": "Can't find the channel you specified!",
     "ERR_FETCH_CHANNEL_DESC": "Make sure you have inputted the channel ID or handle right.",
     "ERR_FETCH_VIDEO": "Can't find the video you specified!",
-    "ERR_FETCH_VIDEO_DESC": "Make sure you have inputed the video ID right.",
+    "ERR_FETCH_VIDEO_DESC": "Make sure you have inputed the video ID right.\nAlso, make sure the video is accessible.",
     "ERR_CMD_CHNL_TOO_MANY": "Only one of `channel_id` or `channel_handle` must be defined.",
-    "ERR_CMD_CHNL_TOO_MANY_DESC": "Make sure you have used at least one, and not both."
+    "ERR_CMD_CHNL_TOO_MANY_DESC": "Make sure you have used at least one, and not both.",
+    "ERR_NOT_THE_COMMAND_EXECUTOR": "You are not the one that ran the command!",
+    "ERR_NOT_THE_COMMAND_EXECUTOR_DESC": "Only the user that ran the command can interact on it."
 }

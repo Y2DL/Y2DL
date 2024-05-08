@@ -4,12 +4,20 @@ from twitchAPI.twitch import Twitch, VideoType
 from twitchAPI.helper import first
 from enum import Enum
 from cachetools.func import ttl_cache
-import logging
+from cachetools import TTLCache
+from asyncache import cached
+from dateutil import parser
+from utils import StringUtils, IntUtils, EmbedUtils
+import json
+import isodate
+import logging as log
+import config
 import sys
 import datetime
 import requests
 import os
-import json
+
+platform, database, bot, logging, services, color = config.load_config()
 
 class LocalizationHelper:
     def __init__(self):
@@ -23,7 +31,7 @@ class LocalizationHelper:
                     self.locales[filename] = json.load(f)
     
     def get(self, key, country_code):
-        code = country_code.value
+        code = country_code.value if hasattr(country_code, "value") else country_code
         if code in self.locales and key in self.locales[code]:
             return self.locales[code][key]
         else:
@@ -33,7 +41,7 @@ locale = LocalizationHelper()
 
 class YtVideoType(str, Enum):
     Video = 'YTVIDTYPE_VIDEO'
-    StreamScheduled = 'YTVIDTYPE_STR_SCHEDULED'
+    StreamSchesduled = 'YTVIDTYPE_STR_SCHEDULED'
     StreamOngoing = 'YTVIDTYPE_STR_ONGOING'
     StreamFinished = 'YTVIDTYPE_STR_FINISHED'
     VideoPremiereScheduled = 'YTVIDTYPE_PRE_SCHEDULED'
@@ -41,7 +49,7 @@ class YtVideoType(str, Enum):
     def toLocale(self, country_code):
         return locale.get(self.value, country_code)
 
-class LoggingHelperFormatter(logging.Formatter):
+class LoggingHelperFormatter(log.Formatter):
     def __init__(self, fmt=None, datefmt=None, style='%'):
         mapping = {
             'DEBUG': 'DBG',
@@ -59,12 +67,12 @@ class LoggingHelperFormatter(logging.Formatter):
 
 class LoggingHelper:
     def init_logging():
-        logger = logging.getLogger()
-        logger.setLevel(logging.DEBUG)
-        fileHandler = logging.FileHandler(filename=str.format('logs/y2dl_log_[].log', datetime.datetime.now().date()), encoding='utf-8', mode='w')
-        fileHandler.setLevel(logging.DEBUG)
-        conHandler = logging.StreamHandler()
-        conHandler.setLevel(logging.INFO)
+        logger = log.getLogger()
+        logger.setLevel(log.DEBUG)
+        fileHandler = log.FileHandler(filename=str.format('logs/y2dl_log_[].log', datetime.datetime.now().date()), encoding='utf-8', mode='w')
+        fileHandler.setLevel(log.DEBUG)
+        conHandler = log.StreamHandler()
+        conHandler.setLevel(log.INFO)
         formatter = LoggingHelperFormatter(fmt="[%(asctime)s %(lvlnme)s] %(message)s", datefmt="%H:%M:%S")
         fileHandler.setFormatter(formatter)
         conHandler.setFormatter(formatter)
@@ -80,7 +88,7 @@ class TwitchHelper:
     async def initialize(self):
         self.twitch_api = await Twitch(self.client_id, self.client_secret)
 
-    @ttl_cache(maxsize=10, ttl=600)
+    @cached(TTLCache(maxsize=64, ttl=600))
     async def get_channel(self, login_names, code):
         tw = await first(self.twitch_api.get_users(logins=login_names))
         tw.stream = await first(self.twitch_api.get_streams(user_login=login_names))
@@ -100,7 +108,20 @@ class YoutubeHelper:
     def __init__(self, api_key):
         self.yt_api = build('youtube', 'v3', developerKey=api_key)
 
-    @ttl_cache(maxsize=10, ttl=600)
+    @ttl_cache(maxsize=64, ttl=600)
+    def get_playlist_info(self, playlist_id):
+        req = self.yt_api.playlists().list(
+            part = 'snippet,contentDetails,status',
+            id = playlist_id,
+            maxResults = 50
+        )
+        try:
+            res = req.execute()
+            return res
+        except:
+            return {"items": []}
+
+    @ttl_cache(maxsize=64, ttl=600)
     def get_playlistitems(self, playlist_id):
         req = self.yt_api.playlistItems().list(
             part = 'snippet,contentDetails',
@@ -113,7 +134,7 @@ class YoutubeHelper:
         except:
             return {"items": []}
 
-    @ttl_cache(maxsize=10, ttl=600)
+    @ttl_cache(maxsize=64, ttl=600)
     def get_channels(self, channel_ids = None, channel_handle = None):
         req = self.yt_api.channels().list(
             part = 'snippet,statistics,contentDetails',
@@ -127,7 +148,7 @@ class YoutubeHelper:
         except:
             return {"items": []}
 
-    @ttl_cache(maxsize=10, ttl=600)
+    @ttl_cache(maxsize=64, ttl=600)
     def get_videos(self, video_ids):
         req = self.yt_api.videos().list(
             part = 'snippet,statistics,contentDetails,liveStreamingDetails,status',
@@ -158,7 +179,220 @@ class YoutubeHelper:
             return {"items": []}
 
 class ReturnYoutubeDislikeHelper:
-    @ttl_cache(maxsize=10, ttl=600)
+    @ttl_cache(maxsize=64, ttl=600)
     def get_dislikes(video_id):
         res = requests.get(f"https://returnyoutubedislikeapi.com/votes?videoId={video_id}")
         return res.json()
+
+class EmbedHelper:
+    def __init__(self):
+        self.ytHelper = YoutubeHelper(platform.youtube.api_key)
+        self.twHelper = TwitchHelper(platform.twitch.client_id, platform.twitch.client_secret)
+        locale = LocalizationHelper()
+
+    async def initialize_twitch(self):
+        await self.twHelper.initialize()
+
+    async def get_tw_streamer(self, userLocale, login_name):
+        try:
+            chnl = await self.twHelper.get_channel(login_name_or_id, locale)
+            embed = EmbedUtils.primary(
+                title = chnl.display_name,
+                url = "https://twitch.tv/" + chnl.login,
+                description = StringUtils.limit(chnl.description, 100)
+            ).set_thumbnail(
+                url = chnl.profile_image_url
+            ).add_field(
+                locale.get("FOLLOWERS", userLocale),
+                IntUtils.humanize_number(chnl.followers),
+                inline = True
+            ).add_field(
+                locale.get("BROADCASTER_TYPE", userLocale),
+                chnl.type_name,
+                inline = True
+            ).add_field(
+                locale.get("CREATED_AT", userLocale),
+                f"<t:{int(chnl.created_at.timestamp())}>",
+                inline = True
+            )
+            if (chnl.stream is not None):
+                embed.add_field(
+                    locale.get("STREAMING_GAME", locale).format(chnl.stream.game_name),
+                    chnl.stream.title,
+                    inline = False
+                ).add_field(
+                    locale.get("VIEWS", userLocale),
+                    IntUtils.humanize_number(chnl.stream.viewer_count),
+                    inline = True
+                ).add_field(
+                    locale.get("STARTED_AT", userLocale),
+                    f"<t:{int(chnl.stream.started_at.timestamp())}>",
+                    inline = True
+                )
+            elif (chnl.last_stream is not None):
+                dur = isodate.parse_duration("PT" + chnl.last_stream.duration.upper())
+                embed.add_field(
+                    locale.get("PREVIOUSLY_STREAMED", userLocale),
+                    f"[**{chnl.last_stream.title}**](https://twitch.tv/videos/{chnl.last_stream.id})\n{chnl.description}",
+                    inline = False
+                ).add_field(
+                    locale.get("VIEWS", userLocale),
+                    IntUtils.humanize_number(chnl.last_stream.view_count),
+                    inline = True
+                ).add_field(
+                    locale.get("DURATION", userLocale),
+                    dur,
+                    inline = True
+                ).add_field(
+                    locale.get("STARTED_AT", userLocale),
+                    f"<t:{int(chnl.last_stream.created_at.timestamp())}>",
+                    inline = True
+                )
+            return embed
+        except:
+            return EmbedUtils.error(
+                title=locale.get("ERR_FETCH_STREAMER", userLocale),
+                description=locale.get("ERR_FETCH_STREAMER_DESC", locale)
+            )
+
+    def get_yt_channel(self, userLocale, channel_id = None, channel_handle = None):
+        if (channel_id is None and channel_handle is None) or (channel_id != None and channel_handle != None):
+            return EmbedUtils.error(
+                title=locale.get("ERR_CMD_CHNL_TOO_MANY", userLocale),
+                description=locale.get("ERR_CMD_CHNL_TOO_MANY_DESC", locale)
+            )
+        chnls = self.ytHelper.get_channels(channel_id, channel_handle)
+        if ("items" not in chnls or len(chnls["items"]) < 1):
+            return EmbedUtils.error(
+                title=locale.get("ERR_FETCH_CHANNEL", userLocale),
+                description=locale.get("ERR_FETCH_CHANNEL_DESC", userLocale),
+            )
+        vids = self.ytHelper.get_playlistitems(chnls["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"])
+        pub_at = int(parser.parse(chnls["items"][0]["snippet"]["publishedAt"]).timestamp())
+        embed = EmbedUtils.primary(
+            title = chnls["items"][0]["snippet"]["title"] + f' ({chnls["items"][0]["snippet"]["customUrl"]})',
+            url = "https://youtube.com/" + chnls["items"][0]["snippet"]["customUrl"],
+            description = StringUtils.limit(chnls["items"][0]["snippet"]["description"], 100),
+        ).set_thumbnail(
+            url = chnls["items"][0]["snippet"]["thumbnails"]["high"]["url"]
+        ).add_field(
+            locale.get("SUBSCRIBERS", userLocale),
+            IntUtils.humanize_number(chnls["items"][0]["statistics"]["subscriberCount"]),
+            inline = True
+        ).add_field(
+            locale.get("VIEWS", userLocale),
+            IntUtils.humanize_number(chnls["items"][0]["statistics"]["viewCount"]),
+            inline = True
+        ).add_field(
+            locale.get("VIDEOS", userLocale),
+            IntUtils.humanize_number(chnls["items"][0]["statistics"]["videoCount"]),
+            inline = True
+        ).add_field(
+            locale.get("CREATED_AT", userLocale),
+            f"<t:{pub_at}>",
+            inline = True
+        )
+        if ("items" in vids and len(vids["items"]) > 1):
+            vid = self.ytHelper.get_videos(vids["items"][0]["snippet"]["resourceId"]["videoId"])
+            ryd_res = ReturnYoutubeDislikeHelper.get_dislikes(vids["items"][0]["snippet"]["resourceId"]["videoId"])
+            pub_at_vid = int(parser.parse(vids["items"][0]["snippet"]["publishedAt"]).timestamp())
+            dur = isodate.parse_duration(vid["items"][0]["contentDetails"]["duration"])
+            embed.add_field(
+                locale.get("LATEST_CONTENT", locale).format(vid["items"][0]["snippet"]["videoType"].toLocale(locale)),
+                f'[**{vids["items"][0]["snippet"]["title"]}**](https://youtu.be/{vids["items"][0]["snippet"]["resourceId"]["videoId"]})\n' +
+                StringUtils.limit(vids["items"][0]["snippet"]["description"], 100),
+                inline = False
+            ).add_field(
+                locale.get("VIEWS", userLocale),
+                IntUtils.humanize_number(vid["items"][0]["statistics"]["viewCount"]),
+                inline = True
+            ).add_field(
+                locale.get("LIKES", userLocale),
+                IntUtils.humanize_number(vid["items"][0]["statistics"]["likeCount"]),
+                inline = True
+            ).add_field(
+                locale.get("DISLIKES", userLocale),
+                IntUtils.humanize_number(ryd_res["dislikes"]),
+                inline = True
+            ).add_field(
+                locale.get("COMMENTS", userLocale),
+                IntUtils.humanize_number(vid["items"][0]["statistics"]["commentCount"]),
+                inline = True
+            ).add_field(
+                locale.get("PUBLISHED_AT", userLocale),
+                f"<t:{pub_at_vid}>",
+                inline = True
+            ).add_field(
+                locale.get("DURATION", userLocale),
+                dur,
+                inline = True
+            ).set_footer(
+                text = locale.get("DISLIKES_NOTE", locale)
+            )
+        title = chnls["items"][0]["snippet"]["title"]
+        return embed, vids, title
+
+    def get_yt_video(self, userLocale, video_id):
+        vids = self.ytHelper.get_videos(video_id)
+        if ("items" not in vids or len(vids["items"]) < 1):
+            return EmbedUtils.error(
+                title=locale.get("ERR_FETCH_VIDEO", userLocale),
+                description=locale.get("ERR_FETCH_VIDEO_DESC", locale)
+            )
+        pub_at = int(parser.parse(vids["items"][0]["snippet"]["publishedAt"]).timestamp())
+        ryd_res = ReturnYoutubeDislikeHelper.get_dislikes(vids["items"][0]["id"])
+        dur = isodate.parse_duration(vids["items"][0]["contentDetails"]["duration"])
+        embed = EmbedUtils.primary(
+            title = vids["items"][0]["snippet"]["title"],
+            url = "https://youtu.be/" + vids["items"][0]["id"],
+            description = StringUtils.limit(vids["items"][0]["snippet"]["description"], 100),
+        ).set_author(
+            name = vids["items"][0]["snippet"]["channelTitle"],
+            url = "https://youtube.com/channel/" + vids["items"][0]["snippet"]["channelId"]
+        ).set_thumbnail(
+            url = vids["items"][0]["snippet"]["thumbnails"]["medium"]["url"]
+        ).add_field(
+            locale.get("VIEWS", userLocale),
+            IntUtils.humanize_number(vids["items"][0]["statistics"]["viewCount"]),
+            inline = True
+        ).add_field(
+            locale.get("LIKES", userLocale),
+            IntUtils.humanize_number(vids["items"][0]["statistics"]["likeCount"]),
+            inline = True
+        ).add_field(
+            locale.get("DISLIKES", userLocale),
+            IntUtils.humanize_number(ryd_res["dislikes"]),
+            inline = True
+        ).add_field(
+            locale.get("COMMENTS", userLocale),
+            IntUtils.humanize_number(vids["items"][0]["statistics"]["commentCount"]),
+            inline = True
+        ).add_field(
+            locale.get("PUBLISHED_AT", userLocale),
+            f"<t:{pub_at}>",
+            inline = True
+        ).add_field(
+            locale.get("DURATION", userLocale),
+            dur,
+            inline = True
+        ).add_field(
+            locale.get("PUBLICITY", userLocale),
+            vids["items"][0]["status"]["privacyStatus"].capitalize(),
+            inline = True
+        ).add_field(
+            locale.get("VIDEO_TYPE", userLocale),
+            vids["items"][0]["snippet"]["videoType"].toLocale(userLocale),
+            inline = True
+        ).add_field(
+            locale.get("LICENSE", userLocale),
+            vids["items"][0]["status"]["license"].capitalize(),
+            inline = True
+        ).set_footer(
+            text = locale.get("DISLIKES_NOTE", locale)
+        )
+        if "tags" in vids["items"][0]["snippet"]:
+            embed.add_field(
+                locale.get("TAGS", userLocale) + f' ({len(vids["items"][0]["snippet"]["tags"])})' if len(vids["items"][0]["snippet"]["tags"]) <= 15 else locale.get("TAGS", userLocale),
+                ", ".join(vids["items"][0]["snippet"]["tags"]) if len(vids["items"][0]["snippet"]["tags"]) <= 15 else IntUtils.humanize_number(len(vids["items"][0]["snippet"]["tags"]))
+            )
+        return embed

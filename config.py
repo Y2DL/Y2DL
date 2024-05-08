@@ -20,12 +20,13 @@ class DatabaseConfig:
         self.connection_string = connection_string
 
 class BotConfig:
-    def __init__(self, client_id, bot_token, state, status, status_delay):
+    def __init__(self, client_id, bot_token, state, status, status_delay, delete_response_emoji):
         self.client_id = client_id
         self.bot_token = bot_token
         self.state = state
         self.status = status
         self.status_delay = status_delay
+        self.delete_response_emoji = delete_response_emoji
 
 class Status:
     def __init__(self, type, name):
