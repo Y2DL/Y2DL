@@ -5,9 +5,11 @@
     "CMD_YTINFO_DESC": "Shows information about a YouTube channel, video, or a playlist.",
     "CMD_YTINFO_VIDEO_DESC": "Shows information about a YouTube video.",
     "CMD_YTINFO_CHANNEL_DESC": "Shows information about a YouTube channel.",
+    "CMD_YTINFO_PLAYLIST_DESC": "Shows information about a YouTube playlist.",
     "CMD_ABOUT_DESC": "About the bot or Y2DL",
     "CMD_TWINFO_DESC": "Shows information about a Twitch broadcaster, and videos.",
     "CMD_TWINFO_CHANNEL_DESC": "Shows information about a Twitch broadcaster",
+    "CMD_GUILDCFG_DESC": "Configures Y2DL on your guild",
 
     "Y2DL_VER": "Using Y2DL {0}",
 
@@ -31,6 +33,8 @@
     "PUBLICITY": "Publicity",
     "VIDEO_TYPE": "Video Type",
     "LICENSE": "License",
+    "CHANNELS": "YouTube Channels ({0})",
+    "BROADCASTERS": "Twitch Broadcasters ({0})",
 
     "TWTYPE_DEFAULT": "Default",
     "TWTYPE_AFFILIATE": "Affiliate",
@@ -42,6 +46,13 @@
     "YTVIDTYPE_STR_FINISHED": "Livestream Replay",
     "YTVIDTYPE_PRE_SCHEDULED": "Scheduled Video Premiere",
     "YTVIDTYPE_PRE_ONGOING": "Ongoing Video Premiere",
+
+    "GCFG_ADD_YT": "Add a YouTube channel",
+    "GCFG_ADD_YT_MODAL": "YouTube channel @handle or ID",
+    "GCFG_ADD_TW": "Add a Twitch broadcaster",
+    "GCFG_ADD_TW_MODAL": "Twitch Broadcaster login name",
+    "GCFG_NO_CHANNELS": "No channels have been added and configured!",
+    "GCFG_NO_BROADCASTERS": "No broadcasters have been added and configured!",
 
     "ERR_FETCH_STREAMER": "Can't find the broadcaster or an error occurred!",
     "ERR_FETCH_STREAMER_DESC": "Make sure you have inputted the streamer's login name right (note: `twitch.tv/[login name]`).",

@@ -1,8 +1,9 @@
-from disnake import Localized, ApplicationCommandInteraction, Embed, MessageInteraction
-from disnake.ui import Button
+from disnake import Localized, ApplicationCommandInteraction, Embed, MessageInteraction, ButtonStyle, ModalInteraction
+from disnake.ui import Button, Modal, TextInput
 from helpers import YoutubeHelper, ReturnYoutubeDislikeHelper, TwitchHelper, LocalizationHelper
 from config import load_config
 from dateutil import parser
+from database import Y2dlDatabase
 from cachetools import TTLCache
 from utils import StringUtils, IntUtils, EmbedUtils
 import json
@@ -17,23 +18,40 @@ class Y2dlGuildConfig:
         self.executer = executer
 
     @staticmethod
-    async def button_recieved(inter: MessageInteraction):
-        if not inter.message.interaction.author.id == inter.author.id:
-            await inter.response.send_message(
-                embed=EmbedUtils.error(
-                    title=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR", inter.locale),
-                    description=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR_DESC", inter.locale)
-                )
-            )
-            return
+    async def btn_selmenu_recieved(inter: MessageInteraction):
+        if inter.data.custom_id.endswith("add_yt"):
+            modal = Modal(title=locale.get("GCFG_ADD_YT", inter.locale), custom_id="gcfg_add_yt_channel", components=[TextInput(label=locale.get("GCFG_ADD_YT_MODAL", inter.locale), custom_id="gcfg_add_yt_id")])
+            await inter.response.send_modal(modal)
+        elif inter.data.custom_id.endswith("add_tw"):
+            modal = Modal(title=locale.get("GCFG_ADD_TW", inter.locale), custom_id="gcfg_add_yt_channel", components=[TextInput(label=locale.get("GCFG_ADD_TW_MODAL", inter.locale), custom_id="gcfg_add_yt_id")])
+            await inter.response.send_modal(modal)
+
+    @staticmethod
+    async def modal_recieved(inter: ModalInteraction):
         await inter.response.send_message(
             "test"
         )
 
-    async def test(self, inter: ApplicationCommandInteraction):
+    async def main_page(self, inter: ApplicationCommandInteraction):
+        db = Y2dlDatabase(database.connection_string)
+        cfg = db.get_guild_config(inter.guild_id)[0]
+        embed = EmbedUtils.secondary(
+            title = f"Config for {inter.guild.name}",
+        ).add_field(
+            locale.get("CHANNELS", inter.locale).format(len(cfg["youtube"]["channels"])),
+            locale.get("GCFG_NO_CHANNELS", inter.locale) if len(cfg["youtube"]["channels"]) < 1 else "test",
+            inline=False
+        ).add_field(
+            locale.get("BROADCASTERS", inter.locale).format(len(cfg["twitch"]["channels"])),
+            locale.get("GCFG_NO_BROADCASTERS", inter.locale) if len(cfg["twitch"]["channels"]) < 1 else "test",
+            inline=False
+        )
         await inter.response.send_message(
-            "test 2",
-            components = [Button(label="Test button 1", custom_id="gcfg_test1"), Button(label="Test button 2", custom_id="gcfg_test2"), Button(label="Test button 3", custom_id="gcfg_test3")]
+            embed=embed,
+            components = [
+                Button(style=ButtonStyle.danger,label=locale.get("GCFG_ADD_YT", inter.locale), custom_id="gcfg_add_yt"),
+                Button(style=ButtonStyle.primary,label=locale.get("GCFG_ADD_TW", inter.locale), custom_id="gcfg_add_tw")
+            ]
         )
 
     

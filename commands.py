@@ -4,6 +4,8 @@ from config import load_config
 from dateutil import parser
 from config_ui import Y2dlGuildConfig
 from utils import StringUtils, IntUtils, EmbedUtils
+from database import Y2dlDatabase
+from bson.json_util import dumps
 import json
 import isodate
 
@@ -12,14 +14,16 @@ embedHlpr = EmbedHelper()
 
 async def init_slash_commands(client):
     await embedHlpr.initialize_twitch()
+    db = Y2dlDatabase(database.connection_string)
 
     @client.slash_command(
-        name="test",
-        description="test cmd"
+        name="guildcfg",
+        description=Localized(key="CMD_GUILDCFG_DESC"),
+        dm_permission=False
     )
-    async def test(inter: ApplicationCommandInteraction):
+    async def guildcfg(inter: ApplicationCommandInteraction):
         cfg = Y2dlGuildConfig(inter.guild_id, inter.author.id)
-        await cfg.test(inter)
+        await cfg.main_page(inter)
 
     @client.slash_command(
         name="about",
@@ -76,7 +80,7 @@ async def init_slash_commands(client):
             selectMenu = ui.StringSelect(custom_id="ytpl_selmenu", placeholder=f'{title}{q}s Latest 25 videos')
             items = vids["items"][:25]
             for vid in items:
-                selectMenu.add_option(label=f"{vid['snippet']['title']}", value=vid['snippet']['resourceId']['videoId'])
+                selectMenu.add_option(label=f"{StringUtils.limit(vid['snippet']['title'], 100)}", value=vid['snippet']['resourceId']['videoId'])
             await inter.followup.send(embed=embed, components=[selectMenu])
         else:
             await inter.followup.send(embed=embed)
@@ -101,10 +105,13 @@ async def init_slash_commands(client):
         plInfo = ytHelper.get_playlist_info(playlist_id)
         userLocale = inter.locale
         if ("items" not in items or len(items["items"]) < 1):
-            return EmbedUtils.error(
-                title=locale.get("ERR_FETCH_CHANNEL", userLocale),
-                description=locale.get("ERR_FETCH_CHANNEL_DESC", userLocale),
+            await inter.followup.send(
+                embed = EmbedUtils.error(
+                    title=locale.get("ERR_FETCH_CHANNEL", userLocale),
+                    description=locale.get("ERR_FETCH_CHANNEL_DESC", userLocale),
+                )
             )
+            return
         embed = EmbedUtils.primary(
             title=plInfo["items"][0]["snippet"]["title"],
             url="https://youtube.com/playlist?list=" + plInfo["items"][0]["id"],
@@ -127,7 +134,8 @@ async def init_slash_commands(client):
         selectMenu = ui.StringSelect(custom_id="ytpl_selmenu", placeholder=f'{plInfo["items"][0]["snippet"]["title"]} by {plInfo["items"][0]["snippet"]["channelTitle"]}')
         vids = items["items"][:25]
         for vid in vids:
-            selectMenu.add_option(label=f"{vid['snippet']['title']} by {vid['snippet']['videoOwnerChannelTitle'] if 'videoOwnerChannelTitle' in vid['snippet'] else f'Can{single_tick}t get video author'}", value=vid['snippet']['resourceId']['videoId'])
+            vidAuthor = f"{vid['snippet']['videoOwnerChannelTitle'] if 'videoOwnerChannelTitle' in vid['snippet'] else f'Can{single_tick}t get video author'}"
+            selectMenu.add_option(label=f"{StringUtils.limit(vid['snippet']['title'], 96 - len(vidAuthor))} by {vidAuthor}", value=vid['snippet']['resourceId']['videoId'])
         await inter.followup.send(embed=embed, components=[selectMenu])
 
 async def playlist_vid_selmenu(interaction: MessageInteraction):

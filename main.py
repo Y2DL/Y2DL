@@ -1,7 +1,8 @@
 from disnake.ext import commands as cmds
-from disnake import Embed, MessageInteraction, Reaction
+from disnake import Embed, MessageInteraction, Reaction, ModalInteraction
 from database import Y2dlDatabase
 from config_ui import Y2dlGuildConfig
+from utils import EmbedUtils
 from helpers import YoutubeHelper, LoggingHelper, ReturnYoutubeDislikeHelper, LocalizationHelper
 import commands
 import ssl
@@ -22,12 +23,45 @@ class Y2dlMain(cmds.AutoShardedInteractionBot):
         log.info(f'Ready as bot "{self.user}"!')        
 
     async def on_button_click(self, interaction: MessageInteraction):
+        if not interaction.message.interaction.author.id == interaction.author.id:
+            await interaction.response.send_message(
+                embed=EmbedUtils.error(
+                    title=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR", interaction.locale),
+                    description=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR_DESC", interaction.locale)
+                ),
+                ephemeral=True
+            )
+            return
         if interaction.data.custom_id.startswith('gcfg_'):
-            await Y2dlGuildConfig.button_recieved(interaction)
+            await Y2dlGuildConfig.btn_selmenu_recieved(interaction)
         
     async def on_dropdown(self, interaction: MessageInteraction):
+        if not interaction.message.interaction.author.id == interaction.author.id:
+            await interaction.response.send_message(
+                embed=EmbedUtils.error(
+                    title=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR", interaction.locale),
+                    description=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR_DESC", interaction.locale)
+                ),
+                ephemeral=True
+            )
+            return
         if interaction.data.custom_id.startswith('ytpl_'):
             await commands.playlist_vid_selmenu(interaction)
+        elif interaction.data.custom_id.startswith('gcfg_'):
+            await Y2dlGuildConfig.btn_selmenu_recieved(interaction)
+
+    async def on_modal_submit(self, interaction: MessageInteraction):
+        if not interaction.message.interaction.author.id == interaction.author.id:
+            await interaction.response.send_message(
+                embed=EmbedUtils.error(
+                    title=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR", interaction.locale),
+                    description=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR_DESC", interaction.locale)
+                ),
+                ephemeral=True
+            )
+            return
+        if interaction.data.custom_id.startswith("gcfg_"):
+            await Y2dlGuildConfig.modal_recieved(interaction)
 
     async def on_reaction_add(self, reaction: Reaction, user):
         if reaction.emoji == bot.delete_response_emoji:

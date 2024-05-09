@@ -195,7 +195,7 @@ class EmbedHelper:
 
     async def get_tw_streamer(self, userLocale, login_name):
         try:
-            chnl = await self.twHelper.get_channel(login_name_or_id, locale)
+            chnl = await self.twHelper.get_channel(login_name, locale)
             embed = EmbedUtils.primary(
                 title = chnl.display_name,
                 url = "https://twitch.tv/" + chnl.login,
