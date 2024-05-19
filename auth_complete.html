@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authenticated to Y2DL!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --text-color: #000000;
+            --text-color-secondary: #363535;
+            --background: #ffffff;
+        }
+
+        @media screen and (prefers-color-scheme: dark) {
+            :root {
+                --text-color: #dadada;
+                --text-color-secondary: #cac6c6;
+                --background: #1a1a1a;
+            }
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-color);
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .main {
+            font-size: 4rem;
+            margin-bottom: 5px;
+        }
+
+        .sec {
+            font-size: 1.5rem;
+        }
+
+        .container {
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            width: 75%;
+            max-width: 1500px;
+            transform: translate(-50%, -50%);
+            position: absolute;
+        }        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">Your Twitch channel has been authenticated for Y2DL to use!</div>
+        <div class="sec">You can now close this window and go back to Discord to complete the setup.</div>
+    </div>
+</body>
+</html>

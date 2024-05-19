@@ -27,7 +27,7 @@ class LocalizationHelper:
             fn = os.fsdecode(file)
             if fn.endswith('.json'):
                 filename = os.path.splitext(fn)[0]  # Get filename without extension
-                with open(os.path.join('i18n', fn), 'r') as f:
+                with open(os.path.join('i18n', fn), 'r', encoding="utf-8" ) as f:
                     self.locales[filename] = json.load(f)
     
     def get(self, key, country_code):
@@ -257,16 +257,20 @@ class EmbedHelper:
 
     def get_yt_channel(self, userLocale, channel_id = None, channel_handle = None):
         if (channel_id is None and channel_handle is None) or (channel_id != None and channel_handle != None):
+            vids = None
+            title = None
             return EmbedUtils.error(
                 title=locale.get("ERR_CMD_CHNL_TOO_MANY", userLocale),
                 description=locale.get("ERR_CMD_CHNL_TOO_MANY_DESC", locale)
-            )
+            ), vids, title
         chnls = self.ytHelper.get_channels(channel_id, channel_handle)
         if ("items" not in chnls or len(chnls["items"]) < 1):
+            vids = None
+            title = None
             return EmbedUtils.error(
                 title=locale.get("ERR_FETCH_CHANNEL", userLocale),
                 description=locale.get("ERR_FETCH_CHANNEL_DESC", userLocale),
-            )
+            ), vids, title
         vids = self.ytHelper.get_playlistitems(chnls["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"])
         pub_at = int(parser.parse(chnls["items"][0]["snippet"]["publishedAt"]).timestamp())
         embed = EmbedUtils.primary(

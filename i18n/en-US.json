@@ -13,6 +13,9 @@
 
     "Y2DL_VER": "Using Y2DL {0}",
 
+    "API_LATENCY": "API Latency",
+    "DB_LATENCY": "MongoDB Latency",
+    "CONFIG": "Configuration for guild {0}",
     "FOLLOWERS": "Followers",
     "BROADCASTER_TYPE": "Broadcaster Type",
     "CREATED_AT": "Created at",
@@ -53,6 +56,12 @@
     "GCFG_ADD_TW_MODAL": "Twitch Broadcaster login name",
     "GCFG_NO_CHANNELS": "No channels have been added and configured!",
     "GCFG_NO_BROADCASTERS": "No broadcasters have been added and configured!",
+    "GCFG_REQUIRES_AUTH": "To Y2DL be able to use your Twitch account, you need to authenticate the bot.",
+    "GCFG_REQUIRES_AUTH_DESC": "Press the button below to authenticate!",
+    "GCFG_AUTHED": "Your Twitch channel is now authenticated!",
+    "GCFG_AUTHED_DESC": "Now, you just need to configure what Y2DL will gonna do with it!",
+    "GCFG_AUTHED_BTN": "Configure Y2DL",
+    "GCFG_AUTH": "Authorize Y2DL to Twitch",
 
     "ERR_FETCH_STREAMER": "Can't find the broadcaster or an error occurred!",
     "ERR_FETCH_STREAMER_DESC": "Make sure you have inputted the streamer's login name right (note: `twitch.tv/[login name]`).",

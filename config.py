@@ -11,9 +11,11 @@ class YoutubeConfig:
         self.enabled_features = enabled_features
 
 class TwitchConfig:
-    def __init__(self, client_id, client_secret):
+    def __init__(self, client_id, client_secret, redirect_uri, oauth2_port):
         self.client_id = client_id
         self.client_secret = client_secret
+        self.oauth2_port = oauth2_port
+        self.redirect_uri = redirect_uri
 
 class DatabaseConfig:
     def __init__(self, connection_string):
@@ -73,7 +75,7 @@ class ColorsConfig:
         self.invis = invis
 
 def load_config():
-    with open('config/config.toml', 'r') as f:
+    with open('config/config.toml', 'r', encoding="utf-8") as f:
         config_data = toml.load(f)
 
     platform = PlatformConfig(
