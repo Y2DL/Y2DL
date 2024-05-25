@@ -143,7 +143,9 @@ class Y2dlGuildConfig(commands.Cog):
             del tw_auth_msgs[state]
             del tw_auth_sessions[state]
 
-            return web.FileResponse('auth_complete.html')
+            with open('auth_complete.html', 'r', encoding="utf-8") as outp:
+                out = outp.read().replace('[gcfg_auth_complete]', locale.get("GCFG_AUTH_COMPLETE", session["locale"])).replace('[gcfg_auth_complete_desc]', locale.get("GCFG_AUTH_COMPLETE_DESC", session["locale"]))
+                return web.Response(body=out, status=200, content_type='text/html')
         else:
             return web.Response(body='{"code": "400", "err": "invalid token"}', status=400, content_type='application/json')
 
