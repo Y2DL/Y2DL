@@ -62,6 +62,8 @@
     "GCFG_AUTHED_DESC": "Now, you just need to configure what Y2DL will gonna do with it!",
     "GCFG_AUTHED_BTN": "Configure Y2DL",
     "GCFG_AUTH": "Authorize Y2DL to Twitch",
+    "GCFG_AUTH_COMPLETE": "Your Twitch channel has been authenticated for Y2DL to use!",
+    "GCFG_AUTH_COMPLETE_DESC": "You can now close this window and go back to Discord to complete the setup.",
 
     "ERR_FETCH_STREAMER": "Can't find the broadcaster or an error occurred!",
     "ERR_FETCH_STREAMER_DESC": "Make sure you have inputted the streamer's login name right (note: `twitch.tv/[login name]`).",
