@@ -2,7 +2,7 @@
 
 # Y2DL (Python version)
 ![GitHub all releases](https://img.shields.io/github/downloads/jbcarreon123/Y2DL/total) ![VersionBadge](https://img.shields.io/github/v/release/jbcarreon123/Y2DL)
-![LicenseBadge](https://img.shields.io/github/license/jbcarreon123/Y2DL) [![Discord](https://img.shields.io/discord/1135815464891732089)](https://discord.gg/P5ecFZNyCc)
+![LicenseBadge](https://img.shields.io/github/license/jbcarreon123/Y2DL) [![Crowdin](https://badges.crowdin.net/y2dl/localized.svg)](https://crowdin.com) [![Discord](https://img.shields.io/discord/1135815464891732089)](https://discord.gg/P5ecFZNyCc) 
 
 Fetches YouTube or Twitch channel, video, playlist (or others) info and sends it to a human-readable format in a Discord channel.
 
