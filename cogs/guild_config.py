@@ -132,7 +132,7 @@ class Y2dlGuildConfig(commands.Cog):
 
             await msg(
                 embed=EmbedUtils.success(
-                    title=locale.get("GCFG_AUTHED", session["locale"]),
+                    title=locale.get("GCFG_TWAUTHED", session["locale"]),
                     description=locale.get("GCFG_AUTHED_DESC", session["locale"])
                 ),
                 components=[
@@ -144,7 +144,7 @@ class Y2dlGuildConfig(commands.Cog):
             del tw_auth_sessions[state]
 
             with open('auth_complete.html', 'r', encoding="utf-8") as outp:
-                out = outp.read().replace('[gcfg_auth_complete]', locale.get("GCFG_AUTH_COMPLETE", session["locale"])).replace('[gcfg_auth_complete_desc]', locale.get("GCFG_AUTH_COMPLETE_DESC", session["locale"]))
+                out = outp.read().replace('[gcfg_auth_complete]', locale.get("GCFG_TWAUTH_COMPLETE", session["locale"])).replace('[gcfg_auth_complete_desc]', locale.get("GCFG_TWAUTH_COMPLETE_DESC", session["locale"]))
                 return web.Response(body=out, status=200, content_type='text/html')
         else:
             return web.Response(body='{"code": "400", "err": "invalid token"}', status=400, content_type='application/json')

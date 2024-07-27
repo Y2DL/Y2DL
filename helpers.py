@@ -331,7 +331,7 @@ class EmbedHelper:
                 dur,
                 inline = True
             ).set_footer(
-                text = locale.get("DISLIKES_NOTE", locale)
+                text = locale.get("DISLIKES_NOTE", userLocale)
             )
         title = chnls["items"][0]["snippet"]["title"]
         return embed, vids, title
@@ -392,7 +392,7 @@ class EmbedHelper:
             vids["items"][0]["status"]["license"].capitalize(),
             inline = True
         ).set_footer(
-            text = locale.get("DISLIKES_NOTE", locale)
+            text = locale.get("DISLIKES_NOTE", userLocale)
         )
         if "tags" in vids["items"][0]["snippet"]:
             embed.add_field(
