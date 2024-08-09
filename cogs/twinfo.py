@@ -1,5 +1,6 @@
-from disnake import Localized, ApplicationCommandInteraction, Embed, ui, MessageInteraction, Permissions
-from disnake.ext import commands
+from discord import app_commands, Embed, ui, MessageInteraction, Permissions, AllowedMentions
+from discord.ext.commands import Context
+from discord.ext import commands
 from helpers import YoutubeHelper, ReturnYoutubeDislikeHelper, TwitchHelper, LocalizationHelper, YtVideoType, EmbedHelper, locale
 from config import load_config
 from dateutil import parser
@@ -10,26 +11,26 @@ import json
 import asyncio
 import isodate
 
-class Y2dlTwInfo(commands.Cog):
+class TwitchInfo(commands.Cog, name="Twitch Info", description="Commands for showing Twitch broadcaster/video information"):
     def __init__(self, bot):
         self.bot = bot
         self._last_member = None
         self.embedHlpr = EmbedHelper()
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(self.embedHlpr.initialize_twitch())
 
-    @commands.slash_command(
+    @commands.hybrid_group(
         name="twinfo",
-        description=Localized(key="CMD_TWINFO_DESC")
+        description="Shows information about a Twitch broadcaster, and videos."
     )
-    async def twinfo(self, inter: ApplicationCommandInteraction):
+    async def twinfo(self, ctx: Context):
         pass
 
-    @twinfo.sub_command(
+    @twinfo.command(
         name="broadcaster",
-        description=Localized(key="CMD_TWINFO_CHANNEL_DESC")
+        description=app_commands.locale_str("Shows information about a Twitch broadcaster"),
+        usage="{pr}twinfo broadcaster <login_name>"
     )
-    async def broadcaster(self, inter: ApplicationCommandInteraction, login_name: str):
-        await inter.response.defer()
-        embed = await self.embedHlpr.get_tw_streamer(inter.locale, login_name)
-        await inter.followup.send(embed=embed)
+    async def broadcaster(self, ctx: Context, login_name: str):
+        self.embedHlpr.initialize_twitch()
+        await ctx.defer()
+        embed = await self.embedHlpr.get_tw_streamer("en-US", login_name)
+        await ctx.reply(embed=embed, allowed_mentions=AllowedMentions.none())

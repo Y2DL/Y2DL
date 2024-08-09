@@ -1,7 +1,7 @@
 import requests
 from typing import Union, Optional, Any
-from disnake import Embed, Colour
-from disnake.types.embed import EmbedType
+from discord import Embed, Colour
+from discord.types.embed import EmbedType
 import datetime
 from config import load_config
 

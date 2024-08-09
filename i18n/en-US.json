@@ -3,13 +3,13 @@
     "LANG_TRANSLATOR": "jbcarreon123",
 
     "CMD_YTINFO_DESC": "Shows information about a YouTube channel, video, or a playlist.",
-    "CMD_YTINFO_VIDEO_DESC": "Shows information about a YouTube video.",
-    "CMD_YTINFO_CHANNEL_DESC": "Shows information about a YouTube channel.",
-    "CMD_YTINFO_PLAYLIST_DESC": "Shows information about a YouTube playlist.",
-    "CMD_ABOUT_DESC": "About the bot or Y2DL",
+    "CMD_YTINFO_VIDEO_DESC": "",
+    "CMD_YTINFO_CHANNEL_DESC": "",
+    "CMD_YTINFO_PLAYLIST_DESC": "",
+    "CMD_ABOUT_DESC": "",
     "CMD_TWINFO_DESC": "Shows information about a Twitch broadcaster, and videos.",
-    "CMD_TWINFO_CHANNEL_DESC": "Shows information about a Twitch broadcaster",
-    "CMD_GUILDCFG_DESC": "Configures Y2DL on your guild",
+    "CMD_TWINFO_CHANNEL_DESC": "",
+    "CMD_GUILDCFG_DESC": "",
 
     "Y2DL_VER": "Using Y2DL {0}",
 
@@ -27,6 +27,7 @@
     "DISLIKES_NOTE": "*uses the Return YouTube Dislike API, so it might be inaccurate",
     "COMMENTS": "Comments",
     "PUBLISHED_AT": "Published at",
+    "DEARROW_TITLE": "DeArrow Title (https://sponsor.ajay.app)",
     "VIEWS": "Views",
     "VIDEOS": "Videos",
     "STARTED_AT": "Started at",

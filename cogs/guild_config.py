@@ -1,6 +1,7 @@
-from disnake import Localized, ApplicationCommandInteraction, Embed, ui, MessageInteraction, Permissions, ModalInteraction, ButtonStyle
-from disnake.ext import commands
-from disnake.ui import Button, Modal, TextInput
+from discord import app_commands, Embed, ui, MessageInteraction, Permissions, ButtonStyle, AllowedMentions
+from discord.ext import commands
+from discord.ext.commands import Context
+from discord.ui import Button, Modal, TextInput
 from helpers import YoutubeHelper, ReturnYoutubeDislikeHelper, TwitchHelper, LocalizationHelper, YtVideoType, EmbedHelper, locale
 from config import load_config
 from dateutil import parser
@@ -22,7 +23,7 @@ import string
 tw_auth_sessions = TTLCache(64, 3600)
 tw_auth_msgs = TTLCache(64, 3600)
 
-class Y2dlGuildConfig(commands.Cog):
+class GuildConfig(commands.Cog, name="Guild Config", description="Commands for configuring Y2DL"):
 
     def __init__(self, bot, port):
         self.dbot = bot
@@ -30,37 +31,36 @@ class Y2dlGuildConfig(commands.Cog):
         self._last_member = None
         self.platform, self.database, self.bot, self.logging, self.services, self.color = load_config()
 
-    @commands.slash_command(
+    @commands.hybrid_command(
         name="guildcfg",
-        description=Localized(key="CMD_GUILDCFG_DESC"),
-        dm_permission=False
+        description="Configures Y2DL on your guild",
+        default_permissions=Permissions(manage_guild=True),
+        usage="{pr}guildcfg"
     )
-    async def guildcfg(self, inter: ApplicationCommandInteraction):
+    @commands.guild_only()
+    async def guildcfg(self, ctx: Context):
         db = Y2dlDatabase(self.database.connection_string)
-        cfg = db.get_guild_config(inter.guild_id)[0]
+        cfg = db.get_guild_config(ctx.guild.id)[0]
         embed = EmbedUtils.secondary(
-            title = locale.get("CONFIG", inter.locale).format(inter.guild.name),
+            title = locale.get("CONFIG", "en-US").format(ctx.guild.name),
         ).add_field(
-            locale.get("CHANNELS", inter.locale).format(len(cfg["youtube"]["channels"])),
-            locale.get("GCFG_NO_CHANNELS", inter.locale) if len(cfg["youtube"]["channels"]) < 1 else "test",
+            name=locale.get("CHANNELS", "en-US").format(len(cfg["youtube"]["channels"])),
+            value=locale.get("GCFG_NO_CHANNELS", "en-US") if len(cfg["youtube"]["channels"]) < 1 else "test",
             inline=False
         ).add_field(
-            locale.get("BROADCASTERS", inter.locale).format(len(cfg["twitch"]["channels"])),
-            locale.get("GCFG_NO_BROADCASTERS", inter.locale) if len(cfg["twitch"]["channels"]) < 1 else "test",
+            name=locale.get("BROADCASTERS", "en-US").format(len(cfg["twitch"]["channels"])),
+            value=locale.get("GCFG_NO_BROADCASTERS", "en-US") if len(cfg["twitch"]["channels"]) < 1 else "test",
             inline=False
         )
-        await inter.response.send_message(
+        await ctx.reply(
             embed=embed,
-            components = [
-                Button(style=ButtonStyle.danger,label=locale.get("GCFG_ADD_YT", inter.locale), custom_id="gcfg_add_yt"),
-                Button(style=ButtonStyle.primary,label=locale.get("GCFG_ADD_TW", inter.locale), custom_id="gcfg_add_tw")
-            ]
+            allowed_mentions=AllowedMentions.none()
         )
 
     @commands.Cog.listener()
-    async def on_button_click(self, inter: MessageInteraction):
-        if not inter.message.interaction.author.id == inter.author.id:
-            await inter.response.send_message(
+    async def on_button_click(self, ctx: MessageInteraction):
+        if not ctx.message.interaction.author.id == ctx.author.id:
+            await ctx.reply(
                 embed=EmbedUtils.error(
                     title=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR", interaction.locale),
                     description=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR_DESC", interaction.locale)
@@ -68,54 +68,40 @@ class Y2dlGuildConfig(commands.Cog):
                 ephemeral=True
             )
             return
-        if inter.data.custom_id.endswith("add_yt"):
-            modal = Modal(title=locale.get("GCFG_ADD_YT", inter.locale), custom_id="gcfg_add_yt", components=[TextInput(label=locale.get("GCFG_ADD_YT_MODAL", inter.locale), custom_id="gcfg_add_yt_id")])
-            await inter.response.send_modal(modal)
-        elif inter.data.custom_id.endswith("add_tw"):
-            await inter.response.defer()
+        if ctx.data.custom_id.endswith("add_yt"):
+            modal = Modal(title=locale.get("GCFG_ADD_YT", "en-US"), custom_id="gcfg_add_yt", components=[TextInput(label=locale.get("GCFG_ADD_YT_MODAL", "en-US"), custom_id="gcfg_add_yt_id")])
+            await ctx.response.reply_modal(modal)
+        elif ctx.data.custom_id.endswith("add_tw"):
+            await ctx.response.defer()
             embed=EmbedUtils.secondary(
-                title=locale.get("GCFG_REQUIRES_AUTH", inter.locale),
-                description=locale.get("GCFG_REQUIRES_AUTH_DESC", inter.locale)
+                title=locale.get("GCFG_REQUIRES_AUTH", "en-US"),
+                description=locale.get("GCFG_REQUIRES_AUTH_DESC", "en-US")
             )
 
             session_id = ''.join(random.choices(string.ascii_letters + string.digits, k=32))
 
-            await inter.edit_original_message(
+            await ctx.edit_original_message(
                 embed=embed,
                 components = [
-                    Button(style=ButtonStyle.link,label=locale.get("GCFG_AUTH", inter.locale),
+                    Button(style=ButtonStyle.link,label=locale.get("GCFG_AUTH", "en-US"),
                         url=f"https://id.twitch.tv/oauth2/authorize?response_type=code&client_id={self.platform.twitch.client_id}&redirect_uri={self.platform.twitch.redirect_uri}&scope=user:read:broadcast+channel:read:hype_train+channel:read:polls+channel:read:predictions+channel:read:goals+channel:read:subscriptions+moderator:read:followers+channel:read:ads+channel:read:redemptions+bits:read&state={session_id}"
                     ),
                 ]
             )
 
             tw_auth_sessions[session_id] = {
-                'guild_id': inter.guild_id,
-                'channel_id': inter.channel_id,
-                'message_id': inter.message.id,
-                'locale': inter.locale
+                'guild_id': ctx.guild_id,
+                'channel_id': ctx.channel_id,
+                'message_id': ctx.message.id,
+                'locale': "en-US"
             }
 
-            tw_auth_msgs[session_id] = inter.edit_original_message
+            tw_auth_msgs[session_id] = ctx.edit_original_message
 
             print(session_id)
             print(json.dumps(tw_auth_sessions[session_id]))
 
-    @commands.Cog.listener()
-    async def on_modal_submit(self, inter: ModalInteraction):
-        if not inter.message.interaction.author.id == inter.author.id:
-            await inter.response.send_message(
-                embed=EmbedUtils.error(
-                    title=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR", interaction.locale),
-                    description=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR_DESC", interaction.locale)
-                ),
-                ephemeral=True
-            )
-            return
-        if inter.data.custom_id.endswith("add_yt"):
-            await inter.response.send_message(
-                "test"
-            )
+    # TODO: Modal Submit
 
     app = web.Application(debug=True)
 

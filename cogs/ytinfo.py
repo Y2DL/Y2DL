@@ -1,5 +1,6 @@
-from disnake import Localized, ApplicationCommandInteraction, Embed, ui, MessageInteraction, Permissions
-from disnake.ext import commands
+from discord import app_commands, Embed, ui, Interaction, Permissions, AllowedMentions, SelectOption
+from discord.ext import commands
+from discord.ext.commands import Context
 from helpers import YoutubeHelper, ReturnYoutubeDislikeHelper, TwitchHelper, LocalizationHelper, YtVideoType, EmbedHelper, locale
 from config import load_config
 from dateutil import parser
@@ -10,74 +11,64 @@ import json
 import asyncio
 import isodate
 
-class Y2dlYtInfo(commands.Cog):
+class YouTubeInfo(commands.Cog, name="YouTube Info", description="Commands for showing YouTube channel/video/playlist information"):
     def __init__(self, bot):
-        self.bot = bot
+        self.dbot = bot
         self._last_member = None
         self.embedHlpr = EmbedHelper()
+        self.platform, self.database, self.bot, self.logging, self.services, self.color = load_config()
 
-    @commands.Cog.listener()
-    async def on_dropdown(self, interaction: MessageInteraction):
-        if not interaction.message.interaction.author.id == interaction.author.id:
-            await interaction.response.send_message(
-                embed=EmbedUtils.error(
-                    title=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR", interaction.locale),
-                    description=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR_DESC", interaction.locale)
-                ),
-                ephemeral=True
-            )
-            return
-        if interaction.data.custom_id.startswith('ytpl_'):
-            ytHelper = YoutubeHelper(platform.youtube.api_key)
-            await interaction.response.defer()
-            embed = self.embedHlpr.get_yt_video(interaction.locale, interaction.data.values[0])
-            await interaction.edit_original_message(embed=embed)
-
-    @commands.slash_command(
+    @commands.hybrid_group(
         name="ytinfo",
-        description=Localized(key="CMD_YTINFO_DESC")
+        description="Shows information about a YouTube channel, video, or a playlist."
     )
-    async def ytinfo(self, inter: ApplicationCommandInteraction):
+    async def ytinfo(self, ctx: Context):
         pass
 
-    @ytinfo.sub_command(
+    @ytinfo.command(
         name="channel",
-        description=Localized(key="CMD_YTINFO_CHANNEL_DESC")
+        description="Shows information about a YouTube channel.",
+        usage="{pr}ytinfo channel <channel_id_or_handle>"
     )
-    async def channel(self, inter: ApplicationCommandInteraction, channel_id: str = None, channel_handle: str = None):
-        await inter.response.defer()
-        embed, vids, title = self.embedHlpr.get_yt_channel(inter.locale, channel_id, channel_handle)
+    async def channel(self, ctx: Context, channel_id_or_handle: str):
+        await ctx.defer()
+        channel_id = None
+        channel_handle = None
+        if "@" in channel_id_or_handle:
+            channel_handle = channel_id_or_handle
+        else:
+            channel_id = channel_id_or_handle
+        embed, vids, title = self.embedHlpr.get_yt_channel("en-US", channel_id, channel_handle)
         q = "'"
         if (vids is not None and "items" in vids and len(vids["items"]) >= 1):
-            selectMenu = ui.StringSelect(custom_id="ytpl_selmenu", placeholder=f'{title}{q}s Latest 25 videos')
-            items = vids["items"][:25]
-            for vid in items:
-                selectMenu.add_option(label=f"{StringUtils.limit(vid['snippet']['title'], 100)}", value=vid['snippet']['resourceId']['videoId'])
-            await inter.followup.send(embed=embed, components=[selectMenu])
+            view = VideoSelectView(f'{title}{q}s Latest 25 videos', vids["items"][:25], ctx.author.id)
+            await ctx.reply(embed=embed, view=view, allowed_mentions=AllowedMentions.none())
         else:
-            await inter.followup.send(embed=embed)
+            await ctx.reply(embed=embed, allowed_mentions=AllowedMentions.none())
 
-    @ytinfo.sub_command(
+    @ytinfo.command(
         name="video",
-        description=Localized(key="CMD_YTINFO_VIDEO_DESC")
+        description="Shows information about a YouTube video.",
+        usage="{pr}ytinfo video <video_id>"
     )
-    async def video(self, inter: ApplicationCommandInteraction, video_id: str):
-        await inter.response.defer()
-        embed = self.embedHlpr.get_yt_video(inter.locale, video_id)
-        await inter.followup.send(embed=embed)
+    async def video(self, ctx: Context, video_id: str):
+        await ctx.defer()
+        embed = self.embedHlpr.get_yt_video("en-US", video_id)
+        await ctx.reply(embed=embed, allowed_mentions=AllowedMentions.none())
 
-    @ytinfo.sub_command(
+    @ytinfo.command(
         name="playlist",
-        description=Localized(key="CMD_YTINFO_PLAYLIST_DESC")
+        description="Shows information about a YouTube playlist.",
+        usage="{pr}ytinfo playlist <playlist_id>"
     )
-    async def playlist(self, inter: ApplicationCommandInteraction, playlist_id: str):
-        await inter.response.defer()
-        ytHelper = YoutubeHelper(platform.youtube.api_key)
+    async def playlist(self, ctx: Context, playlist_id: str):
+        await ctx.defer()
+        ytHelper = YoutubeHelper(self.platform.youtube.api_key)
         items = ytHelper.get_playlistitems(playlist_id)
         plInfo = ytHelper.get_playlist_info(playlist_id)
-        userLocale = inter.locale
+        userLocale = "en-US"
         if ("items" not in items or len(items["items"]) < 1):
-            await inter.followup.send(
+            await ctx.send(
                 embed = EmbedUtils.error(
                     title=locale.get("ERR_FETCH_CHANNEL", userLocale),
                     description=locale.get("ERR_FETCH_CHANNEL_DESC", userLocale),
@@ -94,18 +85,46 @@ class Y2dlYtInfo(commands.Cog):
         ).set_thumbnail(
             url = plInfo["items"][0]["snippet"]["thumbnails"]["standard"]["url"]
         ).add_field(
-            locale.get("VIDEOS", userLocale),
-            plInfo["items"][0]["contentDetails"]["itemCount"],
+            name=locale.get("VIDEOS", userLocale),
+            value=plInfo["items"][0]["contentDetails"]["itemCount"],
             inline = True
         ).add_field(
-            locale.get("PUBLICITY", userLocale),
-            plInfo["items"][0]["status"]["privacyStatus"].capitalize(),
+            name=locale.get("PUBLICITY", userLocale),
+            value=plInfo["items"][0]["status"]["privacyStatus"].capitalize(),
             inline = True
         )
-        single_tick = "'"
-        selectMenu = ui.StringSelect(custom_id="ytpl_selmenu", placeholder=f'{plInfo["items"][0]["snippet"]["title"]} by {plInfo["items"][0]["snippet"]["channelTitle"]}')
-        vids = items["items"][:25]
-        for vid in vids:
-            vidAuthor = f"{vid['snippet']['videoOwnerChannelTitle'] if 'videoOwnerChannelTitle' in vid['snippet'] else f'Can{single_tick}t get video author'}"
-            selectMenu.add_option(label=f"{StringUtils.limit(vid['snippet']['title'], 96 - len(vidAuthor))} by {vidAuthor}", value=vid['snippet']['resourceId']['videoId'])
-        await inter.followup.send(embed=embed, components=[selectMenu])
+        view = VideoSelectView(f'{plInfo["items"][0]["snippet"]["title"]} by {plInfo["items"][0]["snippet"]["channelTitle"]}', items["items"][:25], ctx.author.id)
+        await ctx.reply(embed=embed, view=view, allowed_mentions=AllowedMentions.none())
+
+class VideoSelect(ui.Select):
+    def __init__(self, placeholder, videos, author):
+        options = []
+        t = "'"
+        for video in videos:
+            video_author = f"{video['snippet']['videoOwnerChannelTitle'] if 'videoOwnerChannelTitle' in video['snippet'] else f'Can{t}t get video author'}"
+            options.append(SelectOption(label=f"{StringUtils.limit(video['snippet']['title'], 100)}", description=f"by {video_author}", value=video['snippet']['resourceId']['videoId']))
+        super().__init__(placeholder=placeholder, min_values=1, max_values=1, options=options)
+        self.author = author
+        self.embedHlpr = EmbedHelper()
+        self.platform, self.database, self.bot, self.logging, self.services, self.color = load_config()
+
+    async def callback(self, interaction: Interaction):
+        if interaction.user.id != self.author:
+            await interaction.response.send_message(
+                embed=EmbedUtils.error(
+                    title=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR", interaction.locale),
+                    description=locale.get("ERR_NOT_THE_COMMAND_EXECUTOR_DESC", interaction.locale)
+                ),
+                ephemeral=True
+            )
+            print(f"{interaction.user.id}, {self.author}")
+            return
+        ytHelper = YoutubeHelper(self.platform.youtube.api_key)
+        await interaction.response.defer()
+        embed = self.embedHlpr.get_yt_video(interaction.locale, self.values[0])
+        await interaction.message.edit(embed=embed)
+
+class VideoSelectView(ui.View):
+    def __init__(self, placeholder, videos, author):
+        super().__init__(timeout=600)
+        self.add_item(VideoSelect(placeholder, videos, author))

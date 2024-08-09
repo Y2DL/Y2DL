@@ -16,6 +16,7 @@ import sys
 import datetime
 import requests
 import os
+import re
 
 platform, database, bot, logging, services, color = config.load_config()
 
@@ -26,7 +27,7 @@ class LocalizationHelper:
         for file in os.listdir(dir):
             fn = os.fsdecode(file)
             if fn.endswith('.json'):
-                filename = os.path.splitext(fn)[0]  # Get filename without extension
+                filename = os.path.splitext(fn)[0]
                 with open(os.path.join('i18n', fn), 'r', encoding="utf-8" ) as f:
                     self.locales[filename] = json.load(f)
     
@@ -83,18 +84,15 @@ class TwitchHelper:
     def __init__(self, client_id, client_secret):
         self.client_id = client_id
         self.client_secret = client_secret
-        self.twitch_api = None
-
-    async def initialize(self):
-        self.twitch_api = await Twitch(self.client_id, self.client_secret)
 
     @cached(TTLCache(maxsize=64, ttl=600))
     async def get_channel(self, login_names, code):
-        tw = await first(self.twitch_api.get_users(logins=login_names))
-        tw.stream = await first(self.twitch_api.get_streams(user_login=login_names))
-        tw.last_stream = await first(self.twitch_api.get_videos(user_id=tw.id, video_type=VideoType.ARCHIVE))
+        twitch_api = await Twitch(self.client_id, self.client_secret)
+        tw = await first(twitch_api.get_users(logins=login_names))
+        tw.stream = await first(twitch_api.get_streams(user_login=login_names))
+        tw.last_stream = await first(twitch_api.get_videos(user_id=tw.id, video_type=VideoType.ARCHIVE))
         
-        flw = await self.twitch_api.get_channel_followers(tw.id)
+        flw = await twitch_api.get_channel_followers(tw.id)
         tw.followers = flw.total
         if tw.broadcaster_type == "affiliate":
             tw.type_name = locale.get("TWTYPE_AFFILIATE", code)
@@ -184,6 +182,12 @@ class ReturnYoutubeDislikeHelper:
         res = requests.get(f"https://returnyoutubedislikeapi.com/votes?videoId={video_id}")
         return res.json()
 
+class DeArrowHelper:
+    @ttl_cache(maxsize=64, ttl=600)
+    def get_branding(video_id):
+        res = requests.get(f"https://sponsor.ajay.app/api/branding?videoID={video_id}")
+        return res.json()
+
 class EmbedHelper:
     def __init__(self):
         self.ytHelper = YoutubeHelper(platform.youtube.api_key)
@@ -203,49 +207,49 @@ class EmbedHelper:
             ).set_thumbnail(
                 url = chnl.profile_image_url
             ).add_field(
-                locale.get("FOLLOWERS", userLocale),
-                IntUtils.humanize_number(chnl.followers),
+                name=locale.get("FOLLOWERS", userLocale),
+                value=IntUtils.humanize_number(chnl.followers),
                 inline = True
             ).add_field(
-                locale.get("BROADCASTER_TYPE", userLocale),
-                chnl.type_name,
+                name=locale.get("BROADCASTER_TYPE", userLocale),
+                value=chnl.type_name,
                 inline = True
             ).add_field(
-                locale.get("CREATED_AT", userLocale),
-                f"<t:{int(chnl.created_at.timestamp())}>",
+                name=locale.get("CREATED_AT", userLocale),
+                value=f"<t:{int(chnl.created_at.timestamp())}>",
                 inline = True
             )
             if (chnl.stream is not None):
                 embed.add_field(
-                    locale.get("STREAMING_GAME", locale).format(chnl.stream.game_name),
-                    chnl.stream.title,
+                    name=locale.get("STREAMING_GAME", locale).format(chnl.stream.game_name),
+                    value=chnl.stream.title,
                     inline = False
                 ).add_field(
-                    locale.get("VIEWS", userLocale),
-                    IntUtils.humanize_number(chnl.stream.viewer_count),
+                    name=locale.get("VIEWS", userLocale),
+                    value=IntUtils.humanize_number(chnl.stream.viewer_count),
                     inline = True
                 ).add_field(
-                    locale.get("STARTED_AT", userLocale),
-                    f"<t:{int(chnl.stream.started_at.timestamp())}>",
+                    name=locale.get("STARTED_AT", userLocale),
+                    value=f"<t:{int(chnl.stream.started_at.timestamp())}>",
                     inline = True
                 )
             elif (chnl.last_stream is not None):
                 dur = isodate.parse_duration("PT" + chnl.last_stream.duration.upper())
                 embed.add_field(
-                    locale.get("PREVIOUSLY_STREAMED", userLocale),
-                    f"[**{chnl.last_stream.title}**](https://twitch.tv/videos/{chnl.last_stream.id})\n{chnl.description}",
+                    name=locale.get("PREVIOUSLY_STREAMED", userLocale),
+                    value=f"[**{chnl.last_stream.title}**](https://twitch.tv/videos/{chnl.last_stream.id})\n{chnl.description}",
                     inline = False
                 ).add_field(
-                    locale.get("VIEWS", userLocale),
-                    IntUtils.humanize_number(chnl.last_stream.view_count),
+                    name=locale.get("VIEWS", userLocale),
+                    value=IntUtils.humanize_number(chnl.last_stream.view_count),
                     inline = True
                 ).add_field(
-                    locale.get("DURATION", userLocale),
-                    dur,
+                    name=locale.get("DURATION", userLocale),
+                    value=dur,
                     inline = True
                 ).add_field(
-                    locale.get("STARTED_AT", userLocale),
-                    f"<t:{int(chnl.last_stream.created_at.timestamp())}>",
+                    name=locale.get("STARTED_AT", userLocale),
+                    value=f"<t:{int(chnl.last_stream.created_at.timestamp())}>",
                     inline = True
                 )
             return embed
@@ -280,20 +284,20 @@ class EmbedHelper:
         ).set_thumbnail(
             url = chnls["items"][0]["snippet"]["thumbnails"]["high"]["url"]
         ).add_field(
-            locale.get("SUBSCRIBERS", userLocale),
-            IntUtils.humanize_number(chnls["items"][0]["statistics"]["subscriberCount"]),
+            name=locale.get("SUBSCRIBERS", userLocale),
+            value=IntUtils.humanize_number(chnls["items"][0]["statistics"]["subscriberCount"]),
             inline = True
         ).add_field(
-            locale.get("VIEWS", userLocale),
-            IntUtils.humanize_number(chnls["items"][0]["statistics"]["viewCount"]),
+            name=locale.get("VIEWS", userLocale),
+            value=IntUtils.humanize_number(chnls["items"][0]["statistics"]["viewCount"]),
             inline = True
         ).add_field(
-            locale.get("VIDEOS", userLocale),
-            IntUtils.humanize_number(chnls["items"][0]["statistics"]["videoCount"]),
+            name=locale.get("VIDEOS", userLocale),
+            value=IntUtils.humanize_number(chnls["items"][0]["statistics"]["videoCount"]),
             inline = True
         ).add_field(
-            locale.get("CREATED_AT", userLocale),
-            f"<t:{pub_at}>",
+            name=locale.get("CREATED_AT", userLocale),
+            value=f"<t:{pub_at}>",
             inline = True
         )
         if ("items" in vids and len(vids["items"]) > 1):
@@ -302,33 +306,33 @@ class EmbedHelper:
             pub_at_vid = int(parser.parse(vids["items"][0]["snippet"]["publishedAt"]).timestamp())
             dur = isodate.parse_duration(vid["items"][0]["contentDetails"]["duration"])
             embed.add_field(
-                locale.get("LATEST_CONTENT", locale).format(vid["items"][0]["snippet"]["videoType"].toLocale(locale)),
-                f'[**{vids["items"][0]["snippet"]["title"]}**](https://youtu.be/{vids["items"][0]["snippet"]["resourceId"]["videoId"]})\n' +
-                StringUtils.limit(vids["items"][0]["snippet"]["description"], 100),
+                name=locale.get("LATEST_CONTENT", locale).format(vid["items"][0]["snippet"]["videoType"].toLocale(locale)),
+                value= f'[**{vids["items"][0]["snippet"]["title"]}**](https://youtu.be/{vids["items"][0]["snippet"]["resourceId"]["videoId"]})\n' +
+                StringUtils.limit('-# ' + re.sub(r'\n(.)', '\n-# \\1', re.sub(r'@(\S+)', '[@\\1](https://youtube.com/@\\1)', vids["items"][0]["snippet"]["description"], flags=re.MULTILINE), flags=re.MULTILINE), 100),
                 inline = False
             ).add_field(
-                locale.get("VIEWS", userLocale),
-                IntUtils.humanize_number(vid["items"][0]["statistics"]["viewCount"]),
+                name=locale.get("VIEWS", userLocale),
+                value=IntUtils.humanize_number(vid["items"][0]["statistics"]["viewCount"]),
                 inline = True
             ).add_field(
-                locale.get("LIKES", userLocale),
-                IntUtils.humanize_number(vid["items"][0]["statistics"]["likeCount"]),
+                name=locale.get("LIKES", userLocale),
+                value=IntUtils.humanize_number(vid["items"][0]["statistics"]["likeCount"]),
                 inline = True
             ).add_field(
-                locale.get("DISLIKES", userLocale),
-                IntUtils.humanize_number(ryd_res["dislikes"]),
+                name=locale.get("DISLIKES", userLocale),
+                value=IntUtils.humanize_number(ryd_res["dislikes"]),
                 inline = True
             ).add_field(
-                locale.get("COMMENTS", userLocale),
-                IntUtils.humanize_number(vid["items"][0]["statistics"]["commentCount"]),
+                name=locale.get("COMMENTS", userLocale),
+                value=IntUtils.humanize_number(vid["items"][0]["statistics"]["commentCount"]),
                 inline = True
             ).add_field(
-                locale.get("PUBLISHED_AT", userLocale),
-                f"<t:{pub_at_vid}>",
+                name=locale.get("PUBLISHED_AT", userLocale),
+                value=f"<t:{pub_at_vid}>",
                 inline = True
             ).add_field(
-                locale.get("DURATION", userLocale),
-                dur,
+                name=locale.get("DURATION", userLocale),
+                value=dur,
                 inline = True
             ).set_footer(
                 text = locale.get("DISLIKES_NOTE", userLocale)
@@ -349,54 +353,64 @@ class EmbedHelper:
         embed = EmbedUtils.primary(
             title = vids["items"][0]["snippet"]["title"],
             url = "https://youtu.be/" + vids["items"][0]["id"],
-            description = StringUtils.limit(vids["items"][0]["snippet"]["description"], 100),
+            description = StringUtils.limit(re.sub(r'@(\S+)', '[@\\1](https://youtube.com/@\\1)', vids["items"][0]["snippet"]["description"], flags=re.MULTILINE), 100),
         ).set_author(
             name = vids["items"][0]["snippet"]["channelTitle"],
             url = "https://youtube.com/channel/" + vids["items"][0]["snippet"]["channelId"]
         ).set_thumbnail(
             url = vids["items"][0]["snippet"]["thumbnails"]["medium"]["url"]
-        ).add_field(
-            locale.get("VIEWS", userLocale),
-            IntUtils.humanize_number(vids["items"][0]["statistics"]["viewCount"]),
+        )
+
+        dea = DeArrowHelper.get_branding(vids["items"][0]["id"])
+        if len(dea["titles"]) >= 1 and dea["titles"][0]["original"] == False:
+            embed.add_field(
+                name=locale.get("DEARROW_TITLE", userLocale),
+                value=dea["titles"][0]["title"],
+                inline=False
+            )
+        
+        embed.add_field(
+            name=locale.get("VIEWS", userLocale),
+            value=IntUtils.humanize_number(vids["items"][0]["statistics"]["viewCount"]),
             inline = True
         ).add_field(
-            locale.get("LIKES", userLocale),
-            IntUtils.humanize_number(vids["items"][0]["statistics"]["likeCount"]),
+            name=locale.get("LIKES", userLocale),
+            value=IntUtils.humanize_number(vids["items"][0]["statistics"]["likeCount"]),
             inline = True
         ).add_field(
-            locale.get("DISLIKES", userLocale),
-            IntUtils.humanize_number(ryd_res["dislikes"]),
+            name=locale.get("DISLIKES", userLocale),
+            value=IntUtils.humanize_number(ryd_res["dislikes"]),
             inline = True
         ).add_field(
-            locale.get("COMMENTS", userLocale),
-            IntUtils.humanize_number(vids["items"][0]["statistics"]["commentCount"]),
+            name=locale.get("COMMENTS", userLocale),
+            value=IntUtils.humanize_number(vids["items"][0]["statistics"]["commentCount"]),
             inline = True
         ).add_field(
-            locale.get("PUBLISHED_AT", userLocale),
-            f"<t:{pub_at}>",
+            name=locale.get("PUBLISHED_AT", userLocale),
+            value=f"<t:{pub_at}>",
             inline = True
         ).add_field(
-            locale.get("DURATION", userLocale),
-            dur,
+            name=locale.get("DURATION", userLocale),
+            value=dur,
             inline = True
         ).add_field(
-            locale.get("PUBLICITY", userLocale),
-            vids["items"][0]["status"]["privacyStatus"].capitalize(),
+            name=locale.get("PUBLICITY", userLocale),
+            value=vids["items"][0]["status"]["privacyStatus"].capitalize(),
             inline = True
         ).add_field(
-            locale.get("VIDEO_TYPE", userLocale),
-            vids["items"][0]["snippet"]["videoType"].toLocale(userLocale),
+            name=locale.get("VIDEO_TYPE", userLocale),
+            value=vids["items"][0]["snippet"]["videoType"].toLocale(userLocale),
             inline = True
         ).add_field(
-            locale.get("LICENSE", userLocale),
-            vids["items"][0]["status"]["license"].capitalize(),
+            name=locale.get("LICENSE", userLocale),
+            value=vids["items"][0]["status"]["license"].capitalize(),
             inline = True
         ).set_footer(
             text = locale.get("DISLIKES_NOTE", userLocale)
         )
         if "tags" in vids["items"][0]["snippet"]:
             embed.add_field(
-                locale.get("TAGS", userLocale) + f' ({len(vids["items"][0]["snippet"]["tags"])})' if len(vids["items"][0]["snippet"]["tags"]) <= 15 else locale.get("TAGS", userLocale),
-                ", ".join(vids["items"][0]["snippet"]["tags"]) if len(vids["items"][0]["snippet"]["tags"]) <= 15 else IntUtils.humanize_number(len(vids["items"][0]["snippet"]["tags"]))
+                name=locale.get("TAGS", userLocale) + f' ({len(vids["items"][0]["snippet"]["tags"])})' if len(vids["items"][0]["snippet"]["tags"]) <= 15 else locale.get("TAGS", userLocale),
+                value=", ".join(vids["items"][0]["snippet"]["tags"]) if len(vids["items"][0]["snippet"]["tags"]) <= 15 else IntUtils.humanize_number(len(vids["items"][0]["snippet"]["tags"]))
             )
         return embed
