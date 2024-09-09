@@ -194,16 +194,13 @@ class EmbedHelper:
         self.twHelper = TwitchHelper(platform.twitch.client_id, platform.twitch.client_secret)
         locale = LocalizationHelper()
 
-    async def initialize_twitch(self):
-        await self.twHelper.initialize()
-
     async def get_tw_streamer(self, userLocale, login_name):
         try:
             chnl = await self.twHelper.get_channel(login_name, locale)
             embed = EmbedUtils.primary(
                 title = chnl.display_name,
                 url = "https://twitch.tv/" + chnl.login,
-                description = StringUtils.limit(chnl.description, 100)
+                description = StringUtils.smallify(StringUtils.limit(chnl.description, 100))
             ).set_thumbnail(
                 url = chnl.profile_image_url
             ).add_field(
@@ -237,7 +234,7 @@ class EmbedHelper:
                 dur = isodate.parse_duration("PT" + chnl.last_stream.duration.upper())
                 embed.add_field(
                     name=locale.get("PREVIOUSLY_STREAMED", userLocale),
-                    value=f"[**{chnl.last_stream.title}**](https://twitch.tv/videos/{chnl.last_stream.id})\n{chnl.description}",
+                    value=f"[**{chnl.last_stream.title}**](https://twitch.tv/videos/{chnl.last_stream.id})",
                     inline = False
                 ).add_field(
                     name=locale.get("VIEWS", userLocale),
@@ -280,7 +277,7 @@ class EmbedHelper:
         embed = EmbedUtils.primary(
             title = chnls["items"][0]["snippet"]["title"] + f' ({chnls["items"][0]["snippet"]["customUrl"]})',
             url = "https://youtube.com/" + chnls["items"][0]["snippet"]["customUrl"],
-            description = StringUtils.limit(chnls["items"][0]["snippet"]["description"], 100),
+            description = StringUtils.smallify(StringUtils.limit(chnls["items"][0]["snippet"]["description"], 100), False),
         ).set_thumbnail(
             url = chnls["items"][0]["snippet"]["thumbnails"]["high"]["url"]
         ).add_field(
@@ -308,7 +305,7 @@ class EmbedHelper:
             embed.add_field(
                 name=locale.get("LATEST_CONTENT", locale).format(vid["items"][0]["snippet"]["videoType"].toLocale(locale)),
                 value= f'[**{vids["items"][0]["snippet"]["title"]}**](https://youtu.be/{vids["items"][0]["snippet"]["resourceId"]["videoId"]})\n' +
-                StringUtils.limit('-# ' + re.sub(r'\n(.)', '\n-# \\1', re.sub(r'@(\S+)', '[@\\1](https://youtube.com/@\\1)', vids["items"][0]["snippet"]["description"], flags=re.MULTILINE), flags=re.MULTILINE), 100),
+                StringUtils.smallify(StringUtils.limit(vids["items"][0]["snippet"]["description"], 100)),
                 inline = False
             ).add_field(
                 name=locale.get("VIEWS", userLocale),
@@ -353,7 +350,7 @@ class EmbedHelper:
         embed = EmbedUtils.primary(
             title = vids["items"][0]["snippet"]["title"],
             url = "https://youtu.be/" + vids["items"][0]["id"],
-            description = StringUtils.limit(re.sub(r'@(\S+)', '[@\\1](https://youtube.com/@\\1)', vids["items"][0]["snippet"]["description"], flags=re.MULTILINE), 100),
+            description = StringUtils.smallify(StringUtils.limit(vids["items"][0]["snippet"]["description"], 100)),
         ).set_author(
             name = vids["items"][0]["snippet"]["channelTitle"],
             url = "https://youtube.com/channel/" + vids["items"][0]["snippet"]["channelId"]

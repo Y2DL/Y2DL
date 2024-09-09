@@ -18,9 +18,6 @@ locale = LocalizationHelper()
 class Y2dlMain(cmds.AutoShardedBot):
     async def setup_hook(self):
         db = Y2dlDatabase(database.connection_string)
-        for guild in self.guilds:
-            if db.get_guild_config(guild.id) == None:
-                db.init_guild_config(guild.id)
         await client.add_cog(ytinfo.YouTubeInfo(client))
         await client.add_cog(twinfo.TwitchInfo(client))
         await client.add_cog(other.Y2dlOther(client))
@@ -68,6 +65,7 @@ class Y2dlMain(cmds.AutoShardedBot):
                 title="An error occured.",
                 description=f"Please contact the Y2DL instance owner for help.\n\n```{error}```"
             )
+            log.exception('Command error occured', exc_info=error)
             await ctx.reply(embed=embed, allowed_mentions=AllowedMentions.none())
 
 intents = Intents.default()

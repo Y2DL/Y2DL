@@ -4,6 +4,7 @@ from discord import Embed, Colour
 from discord.types.embed import EmbedType
 import datetime
 from config import load_config
+import re
 
 platform, database, bot, logging, services, color = load_config()
 
@@ -14,8 +15,17 @@ class StringUtils:
         if max_length <= 0:
             raise ValueError("max_length must be greater than zero")
         if len(input_str) <= max_length:
-            return input_str
-        return input_str[:max_length - 3].strip() + "..."
+            return input_str        
+        return input_str[:max_length - 3].rstrip('\n ') + "..."
+
+    def smallify(input_str: str, link_handles: bool = True):
+        if link_handles:
+            out = re.sub(r'@(\S+)', '[@\\1](https://youtube.com/@\\1)', input_str, flags=re.MULTILINE)
+        else:
+            out = input_str
+        out = re.sub(r'\n(.)', '\n-# \\1', out, flags=re.MULTILINE)
+
+        return '-# ' + out
 
 class IntUtils:
     def humanize_number(number):

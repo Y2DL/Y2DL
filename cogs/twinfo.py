@@ -30,7 +30,6 @@ class TwitchInfo(commands.Cog, name="Twitch Info", description="Commands for sho
         usage="{pr}twinfo broadcaster <login_name>"
     )
     async def broadcaster(self, ctx: Context, login_name: str):
-        self.embedHlpr.initialize_twitch()
         await ctx.defer()
         embed = await self.embedHlpr.get_tw_streamer("en-US", login_name)
         await ctx.reply(embed=embed, allowed_mentions=AllowedMentions.none())
